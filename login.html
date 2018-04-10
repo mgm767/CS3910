@@ -17,23 +17,35 @@
     
     <div class="card-body w-50 text-center" style="background-color: #aaa">
         
-         <form  name="LoginForm" novalidate>
+         <form  name="loginForm">
                 
                 <!-- username for account -->
-                <div class="form-group" ng-class="{ 'text-danger': LoginForm.username.$invalid && newAccountForm.username.$touched, 'text-success': !newAccountForm.username.$invalid && newAccountForm.username.$touched }">
+                <div class="form-group" ng-class="{ 'text-danger': loginForm.username.$invalid && loginForm.username.$touched, 'text-success': !loginForm.username.$invalid && loginForm.username.$touched }">
                     <label class="form-control-label" for="username">Username: </label>
-                    <input type="text" class="form-control" ng-class="{ 'is-invalid': newAccountForm.username.$invalid && newAccountForm.username.$touched, 'is-valid': !newAccountForm.username.$invalid && newAccountForm.username.$touched }" name="username" ng-model="account.username" ng-minlength="2" id="username" required/>
-                    <div ng-show="newAccountForm.username.$invalid && newAccountForm.username.$touched" ></div>
+                    <input type="text" class="form-control" min="2" ng-class="{ 'is-invalid': loginForm.username.$invalid && loginForm.username.$touched, 'is-valid': !loginForm.username.$invalid && loginForm.username.$touched }" name="username" ng-model="account.username" ng-minlength="2" id="username" required/>
+                    <div class="text-danger text-left" ng-show="loginForm.username.$invalid && loginForm.username.$touched">Required</div>
                 </div>
                 
                 <!-- password for account -->
-                <div class="form-group" ng-class="{ 'text-danger': newAccountForm.password.$invalid && newAccountForm.password.$touched, 'text-success': !newAccountForm.password.$invalid && newAccountForm.password.$touched }">
+                <div class="form-group" ng-class="{ 'text-danger': loginForm.password.$invalid && loginForm.password.$touched, 'text-success': !loginForm.password.$invalid && loginForm.password.$touched }">
                     <label class="form-control-label" for="password">Password: </label>
-                    <input type="password" class="form-control" ng-class="{ 'is-invalid': newAccountForm.password.$invalid && newAccountForm.password.$touched, 'is-valid': !newAccountForm.password.$invalid && newAccountForm.password.$touched }" name="password" ng-model="account.password" ng-minlength="6" id="password" required/>
-                    <div ng-show="newAccountForm.password.$invalid && newAccountForm.password.$touched" ></div>
+                    <input type="password" class="form-control" min="5" ng-class="{ 'is-invalid': loginForm.password.$invalid && loginForm.password.$touched, 'is-valid': !loginForm.password.$invalid && loginForm.password.$touched }" name="password" ng-model="account.password" ng-minlength="6" id="password" required/>
+                    <div class="text-danger text-left" ng-show="loginForm.password.$invalid && loginForm.password.$touched">Required</div>
                 </div>
                 
-                <button class="btn btn-warning btn-sml" >Login</button>
+                <!--Account role-->
+                <label for="role">Role:</label>
+                <select class="form-control" id="role" required>
+                    <option value="unselected">Please select..</option>  
+                    <option value="student">Student</option>
+                    <option value="tutor">Tutor</option>
+                    <option value="professor">Professor</option>
+                    <option value="administrator">Administrator</option>
+                </select>
+                
+                <br>
+                
+                <button type="submit" class="btn btn-warning btn-sml" >Login</button>
             </form>
     </div>
 </html>
