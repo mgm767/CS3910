@@ -1,51 +1,61 @@
+<!DOCTYPE html>
 <!--This is the HTML for our initial login page. Here users will see just recent news about what is going on with the program and be able to login to get more personalized functionality!-->
 
-<html
-     
-        <head>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-warning text-center"><b>Welcome to TutorCS!</b></nav>
-            <title> TutorCS </title>
-                
-            <!--Boostrap Code-->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-            <!-- Bootstrap JS-->
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        </head>
-            
-    
-    <div class="card-body w-50 text-center" style="background-color: #aaa">
-        
-         <form  name="loginForm">
-                
-                <!-- username for account -->
-                <div class="form-group" ng-class="{ 'text-danger': loginForm.username.$invalid && loginForm.username.$touched, 'text-success': !loginForm.username.$invalid && loginForm.username.$touched }">
-                    <label class="form-control-label" for="username">Username: </label>
-                    <input type="text" class="form-control" min="2" ng-class="{ 'is-invalid': loginForm.username.$invalid && loginForm.username.$touched, 'is-valid': !loginForm.username.$invalid && loginForm.username.$touched }" name="username" ng-model="account.username" ng-minlength="2" id="username" required/>
-                    <div class="text-danger text-left" ng-show="loginForm.username.$invalid && loginForm.username.$touched">Required</div>
-                </div>
-                
-                <!-- password for account -->
-                <div class="form-group" ng-class="{ 'text-danger': loginForm.password.$invalid && loginForm.password.$touched, 'text-success': !loginForm.password.$invalid && loginForm.password.$touched }">
-                    <label class="form-control-label" for="password">Password: </label>
-                    <input type="password" class="form-control" min="5" ng-class="{ 'is-invalid': loginForm.password.$invalid && loginForm.password.$touched, 'is-valid': !loginForm.password.$invalid && loginForm.password.$touched }" name="password" ng-model="account.password" ng-minlength="6" id="password" required/>
-                    <div class="text-danger text-left" ng-show="loginForm.password.$invalid && loginForm.password.$touched">Required</div>
-                </div>
-                
-                <!--Account role-->
-                <label for="role">Role:</label>
-                <select class="form-control" id="role" required>
-                    <option value="unselected">Please select..</option>  
-                    <option value="student">Student</option>
-                    <option value="tutor">Tutor</option>
-                    <option value="professor">Professor</option>
-                    <option value="administrator">Administrator</option>
-                </select>
-                
-                <br>
-                
-                <button type="submit" class="btn btn-warning btn-sml" >Login</button>
-            </form>
+<html>
+    <title> TutorCS </title>
+    <div class="container" style="color:rgb(255, 165, 0); text-align:center;font-size:300%;">
+            <h1><b>Welcome to TutorCS!</b></h1>
     </div>
+                
+    <!--Boostrap Code-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Bootstrap JS-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+            
+    <br>
+    <br>
+    <body style="background-color: black">
+        <div class="row">
+                <div class="col-md-10 col-md-offset-4">
+                    <div class="card-body w-50 text-center" style="background-color: #eee">
+                        
+                         <form  name="loginForm">
+                                
+                            <!-- username for account -->
+                            <div class="form-group" ng-class="{ 'text-danger': loginForm.username.$invalid && loginForm.username.$touched, 'text-success': !loginForm.username.$invalid && loginForm.username.$touched }">
+                                <label class="form-control-label" for="username">Username: </label>
+                                <input type="text" class="form-control" min="2" ng-class="{ 'is-invalid': loginForm.username.$invalid && loginForm.username.$touched, 'is-valid': !loginForm.username.$invalid && loginForm.username.$touched }" name="username" ng-model="account.username" ng-minlength="2" id="username" required/>
+                                <div class="text-danger text-left" ng-show="loginForm.username.$invalid && loginForm.username.$touched">Required</div>
+                            </div>
+                            
+                            <!-- password for account -->
+                            <div class="form-group" ng-class="{ 'text-danger': loginForm.password.$invalid && loginForm.password.$touched, 'text-success': !loginForm.password.$invalid && loginForm.password.$touched }">
+                                <label class="form-control-label" for="password">Password: </label>
+                                <input type="password" class="form-control" min="5" ng-class="{ 'is-invalid': loginForm.password.$invalid && loginForm.password.$touched, 'is-valid': !loginForm.password.$invalid && loginForm.password.$touched }" name="password" ng-model="account.password" ng-minlength="6" id="password" required/>
+                                <div class="text-danger text-left" ng-show="loginForm.password.$invalid && loginForm.password.$touched">Required</div>
+                            </div>
+                            
+                            <!--Account role-->
+                            <label for="role">Role:</label>
+                            <select class="form-control" id="role" required>
+                                <option value="unselected">Please select..</option>  
+                                <option value="student">Student</option>
+                                <option value="tutor">Tutor</option>
+                                <option value="professor">Professor</option>
+                                <option value="administrator">Administrator</option>
+                            </select>
+                            
+                            <br>
+                            
+                            <button type="submit" class="btn btn-warning btn-sml" >Login</button>
+                        </form>
+                    </div>
+                    
+                </div>
+                
+        </div>
+    </body>
+<!-- >>>>>>> fa995461ccae52d1249e8f601c8f10c08d2723b6 -->
 </html>
