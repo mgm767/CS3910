@@ -1,14 +1,14 @@
-/* Controller where we get the data on da movies.*/
+/* Controller where we get the data on da tutor stuffs.*/
 
 (function () {
     'use strict';
     
     
-    // the movie part comes from the name of the app we created in movie.module.js
-    //var myApp = angular.module("cs_project");
+    // the tutorcs part comes from the name of the app we created in cs.module.js
+    var myApp = angular.module("cs_project", []);
     
-    // dataControl is used in the html file when defining the ng-controller attribute
-    //myApp.controller("dataControl", function($scope, $http, $window) {
+    // datais used in the html file when defining the ng-controller attribute
+    myApp.controller("dataControl", function($scope, $http, $window) {
     
        // $http.get('getmovies.php')
        //     .then(function(response) {
@@ -29,6 +29,7 @@
         // function to send new account information to web api to add it to the database
         $scope.login = function(accountDetails) {
           var accountupload = angular.copy(accountDetails);
+          console.log(accountDetails);
           
           $http.post("login.php", accountupload)
             .then(function (response) {
@@ -36,9 +37,19 @@
                     if (response.data.status == 'error') {
                         alert('error: ' + response.data.message);
                     } else {
+                        var role = response.data.authorizedRole;
                         // successful
-                        // send user back to home page
-                        $window.location.href = "index.html";
+                        // send user to proper home page
+                        switch (role) {
+                            case 'student': $window.location.href = "index_student.html";
+                                break;
+                            case 'tutor': $window.location.href = "index_tutor.html";
+                                break;
+                            case 'professor': $window.location.href = "index_faculty.html";
+                                break;
+                            case 'administrator': $window.location.href = "index_admin.html";
+                                break;
+                        }
                     }
                } else {
                     alert('unexpected error');
