@@ -1,43 +1,3 @@
-<<<<<<< HEAD
-<!--This is the HTML for our initial login page. Here users will see just recent news about what is going on with the program and be able to login to get more personalized functionality!-->
-
-<html
-     
-        <head>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-warning text-center"><b>Welcome to TutorCS!</b></nav>
-            <title> TutorCS </title>
-                
-            <!--Boostrap Code-->
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-            <!-- Bootstrap JS-->
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        </head>
-            
-    
-    <div class="card-body w-50 text-center" style="background-color: #aaa">
-        
-         <form  name="LoginForm" novalidate>
-                
-                <!-- username for account -->
-                <div class="form-group" ng-class="{ 'text-danger': LoginForm.username.$invalid && newAccountForm.username.$touched, 'text-success': !newAccountForm.username.$invalid && newAccountForm.username.$touched }">
-                    <label class="form-control-label" for="username">Username: </label>
-                    <input type="text" class="form-control" ng-class="{ 'is-invalid': newAccountForm.username.$invalid && newAccountForm.username.$touched, 'is-valid': !newAccountForm.username.$invalid && newAccountForm.username.$touched }" name="username" ng-model="account.username" ng-minlength="2" id="username" required/>
-                    <div ng-show="newAccountForm.username.$invalid && newAccountForm.username.$touched" ></div>
-                </div>
-                
-                <!-- password for account -->
-                <div class="form-group" ng-class="{ 'text-danger': newAccountForm.password.$invalid && newAccountForm.password.$touched, 'text-success': !newAccountForm.password.$invalid && newAccountForm.password.$touched }">
-                    <label class="form-control-label" for="password">Password: </label>
-                    <input type="password" class="form-control" ng-class="{ 'is-invalid': newAccountForm.password.$invalid && newAccountForm.password.$touched, 'is-valid': !newAccountForm.password.$invalid && newAccountForm.password.$touched }" name="password" ng-model="account.password" ng-minlength="6" id="password" required/>
-                    <div ng-show="newAccountForm.password.$invalid && newAccountForm.password.$touched" ></div>
-                </div>
-                
-                <button class="btn btn-warning btn-sml" >Login</button>
-            </form>
-    </div>
-=======
 <!--This is the HTML for our initial login page. Here users will see just recent news about what is going on with the program and be able to login to get more personalized functionality!-->
 
 <html
@@ -88,5 +48,4 @@
                 <button type="submit" class="btn btn-warning btn-sml" >Login</button>
             </form>
     </div>
->>>>>>> fa995461ccae52d1249e8f601c8f10c08d2723b6
 </html>
