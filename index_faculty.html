@@ -37,12 +37,7 @@
                 </li>
                    <li class="nav-item" ng-class="{'active':(menuHighlight == 2)}">
                     <a class="nav-link text-light">My Courses</a>
-                </li>
-              <!-- menu item for logging in, active if menuHighlight is equal to 3 -->
-              <li class="nav-item" ng-class="{'active' : (menuHighlight == 3)}" ng-show="!isloggedin">
-                <a class="nav-link text-light" href="login.html">Log In</a>
-              </li>
-              
+                </li>           
               <li class="nav-item" ng-show="isloggedin">
                 <a class="nav-link text-light" href="" ng-click="logout()">Log Out</a>
               </li>                              
