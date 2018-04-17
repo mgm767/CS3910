@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <title>Add New Account</title>
+    
+    <!--Boostrap Code-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Bootstrap JS-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!--link to angular-->
+    <!-- "../angular/angular/min.js"-->
+    <script src="angular.min.js"></script>
+    
+    
+    <!-- angular code-->
+    <script src="cs.module.js"></script>
+    <script src="data.tutorcs.controller.js"></script>
+    <script src="cs.filter.js"></script>
+        
+</head>
+<body>   
+    <div class="container" ng-controller="dataControl">
+        <div class="row">
+            <form name="newAccountForm" novalidate>
+                <div class="form-group" ng-class="{ 'text-danger': newAccountForm.hawk_id.$invalid && newAccountForm.hawk_id.$touched, 'text-success': !newAccountForm.hawk_id.$invalid && newAccountForm.hawk_id.$touched }">
+                    <label class="form-control-label" for="hawk_id">HawkID: </label>
+                    <input type="text" class="form-control" ng-class="{ 'is-invalid': newAccountForm.hawk_id.$invalid && newAccountForm.hawk_id.$touched, 'is-valid': !newAccountForm.hawk_id.$invalid && newAccountForm.hawk_id.$touched }" name="hawk_id" ng-model="account.hawk_id" ng-minlength="2" id="hawk_id" required/>
+                    <div ng-show="newAccountForm.hawk_id.$invalid && newAccountForm.hawk_id.$touched" ></div>
+                </div>
+                <label class="checkbox-inline"><input type="checkbox" name="optcheckbox"> Admin  </label>
+                <label class="checkbox-inline"><input type="checkbox" name="optcheckbox"> Faculty  </label>
+                <label class="checkbox-inline"><input type="checkbox" name="optcheckbox"> Tutor  </label>
+                <label class="checkbox-inline"><input type="checkbox" name="optcheckbox"> Student  </label>
+                <div>
+                <button class="btn btn-default" ng-click="newAccount(account)" ng-disabled="newAccountForm.$invalid">Add Account</button>
+                </div>
+            </form>
+    </div>
+    
+    </div>
+</body>
+</html>
