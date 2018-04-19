@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>   
+<html>
 <head>
-    <title>Tutor Homepage</title>
+    <title>Faculty Accounts</title>
         <!--Boostrap Code-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Bootstrap JS-->
@@ -18,8 +18,7 @@
             
             <!-- this is a place to put the title of the page, or a logo -->
 
-          <a class="navbar-brand text-warning" href="index.html"><b>Tutor Homepage</b></a>
-
+          <a class="navbar-brand text-warning" href="index_faculty.html"><b>Faculty Homepage</b></a>
           
           <!-- definition of the buton you see if the screen is too small and you can't fit the full menu -->
           <!-- make sure the data-target and aria-controls match the div with the content you want to show -->
@@ -29,16 +28,16 @@
         
             <!-- the id should match the data-target and aria-controls for the navbar-toggler above if you want this to show up on small screens when they expand the menu -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    
+            
        
              <!-- log in / log out -->
             <ul class="navbar-nav">
-               <li class="nav-item">
-                <a class="nav-link text-light" href="tutor_scheduled.html">Scheduled Sessions<span class="sr-only">(current)</span></a>
-              </li>
                 <li class="nav-item">
-                <a class="nav-link text-light" href="tutor_available.html">Available Sessions</a>
-              </li>              
+                    <a class="nav-link text-light">Accounts<span class="sr-only">(current)</span></a>
+                </li>
+                   <li class="nav-item">
+                    <a class="nav-link text-light" href="faculty_my_courses">My Courses</a>
+                </li>           
               <li class="nav-item">
                 <a class="nav-link text-light" href="login.html" ng-click="logout()">Log Out</a>
               </li>                              
