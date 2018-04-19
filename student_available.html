@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>    
+<html lang="en" ng-app="cs_project">    
 <head>
     <title>Student Homepage</title>
         <!--Boostrap Code-->
@@ -10,8 +10,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!--link to angular-->
-    <!-- "../angular/angular/min.js"-->
     <script src="angular.min.js"></script>
+    <!-- angular code-->
+    <script src="cs.module.js"></script>
+    <script src="data.tutorcs.controller.js"></script>
+    <script src="cs.filter.js"></script>
 </head>
 <!-- This is the menu bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary" ng-init="checkifloggedin()">
@@ -29,8 +32,6 @@
             <!-- the id should match the data-target and aria-controls for the navbar-toggler above if you want this to show up on small screens when they expand the menu -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             
-       
-             <!-- log in / log out -->
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link text-light" href="student_scheduled.html">Scheduled Sessions</a>
@@ -59,27 +60,13 @@
       <th scope="col">Tutor</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody ng-repeat="session in data.available_sessions | filter:query">
     <tr>
-      <td>Introduction to Computer Science</th>
-      <td>04/28/2018</td>
-      <td>10:00 AM</td>
-      <td>Olivia Nauman</td>
-    </tr>
-    <tr>
-      <td>Principles of Computing</th>
-      <td>05/01/2018</td>
-      <td>4:30 PM</td>
-      <td>Cameron Gitzlaff</td>
-    </tr>
-    <tr>
-      <td>Introduction to Computer Science</th>
-      <td>05/03/2018</td>
-      <td>1:00 PM</td>
-      <td>Olivia Nauman</td>
+      <td>{{session.course_id}}</th>
+      <td>{{session.slot}}</td>
+      <td>{{session.slot}}</td>
+      <td>{{session.tutor_id}}</td>
     </tr>
   </tbody>
 </table>
-
-
 </html>

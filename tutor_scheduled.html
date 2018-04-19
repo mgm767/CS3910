@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>    
+<html lang="en" ng-app="cs_project">    
 <head>
     <title>Tutor Available Sessions</title>
         <!--Boostrap Code-->
@@ -10,8 +10,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!--link to angular-->
-    <!-- "../angular/angular/min.js"-->
     <script src="angular.min.js"></script>
+    <!-- angular code-->
+    <script src="cs.module.js"></script>
+    <script src="data.tutorcs.controller.js"></script>
+    <script src="cs.filter.js"></script>
 </head>
 <!-- This is the menu bar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary" ng-init="checkifloggedin()">
@@ -58,22 +61,14 @@
       <th scope="col">Document</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody ng-repeat="session in data.scheduled_sessions | filter:query">
     <tr>
-      <td>Introduction to Computer Science</th>
-      <td>04/28/2018</td>
-      <td>10:00 AM</td>
-      <td>Olivia Nauman</td>
-      <td>John Doe</td>
-      <td>Final Study Guide</td>
-    </tr>
-    <tr>
-      <td>Introduction to Computer Science</th>
-      <td>05/03/2018</td>
-      <td>1:00 PM</td>
-      <td>Olivia Nauman</td>
-      <td>Jane Doe</td>
-      <td>Final Study Guide</td>
+      <td>{{session.course_id}}</th>
+      <td>{{session.slot}}</td>
+      <td>{{session.slot}}</td>
+      <td>{{session.tutor_id}}</td>
+      <td>{{session.student_id}}</td>
+      <td>{{session.doc_id}}</td>
     </tr>
   </tbody>
 </table>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" ng-app="cs_project">
 <head>
     <title>Faculty Accounts</title>
         <!--Boostrap Code-->
@@ -10,11 +10,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!--link to angular-->
-    <!-- "../angular/angular/min.js"-->
     <script src="angular.min.js"></script>
+    <!-- angular code-->
+    <script src="cs.module.js"></script>
+    <script src="data.tutorcs.controller.js"></script>
+    <script src="cs.filter.js"></script>
 </head>
 <!-- This is the menu bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary" ng-init="checkifloggedin()">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             
             <!-- this is a place to put the title of the page, or a logo -->
 
@@ -28,9 +31,6 @@
         
             <!-- the id should match the data-target and aria-controls for the navbar-toggler above if you want this to show up on small screens when they expand the menu -->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            
-       
-             <!-- log in / log out -->
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link text-light">Accounts<span class="sr-only">(current)</span></a>
@@ -53,48 +53,21 @@
       <th scope="col">HawkID</th>
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
-      <th scope="col">Admin Access?</th>
-      <th scope="col">Professor Access?</th>
-      <th scope="col">Tutor Access?</th>
-      <th scope="col">Student Access?</th>
+      <th scope="col">Administrator?</th>
+      <th scope="col">Professor?</th>
+      <th scope="col">Tutor?</th>
+      <th scope="col">Student?</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody ng-repeat="user in data.users | filter:query">
     <tr>
-      <td>admin</th>
-      <td>Kelly</th>
-      <td>Fields</th>
-      <td>Yes</th>
-      <td>No</th>
-      <td>No</th>
-      <td>No</th>
-    </tr>
-    <tr>
-      <td>admin2</th>
-      <td>Jimmy</th>
-      <td>Neutron</th>
-      <td>Yes</th>
-      <td>No</th>
-      <td>No</th>
-      <td>No</th>
-    </tr>
-    <tr>
-      <td>professor</th>
-      <td>Nick</th>
-      <td>Jerin</th>
-      <td>No</th>
-      <td>Yes</th>
-      <td>No</th>
-      <td>No</th>
-    </tr>
-    <tr>
-      <td>professor2</th>
-      <td>Ned</th>
-      <td>Catsonfire</th>
-      <td>No</th>
-      <td>Yes</th>
-      <td>No</th>
-      <td>No</th>
+      <th scope="col">{{user.hawk_id}}</th>
+      <th scope="col">{{user.first_name}}</th>
+      <th scope="col">{{user.last_name}}</th>
+      <th scope="col">{{user.administrator}}</th>
+      <th scope="col">{{user.professor}}</th>
+      <th scope="col">{{user.tutor}}</th>
+      <th scope="col">{{user.student}}</th>
     </tr>
   </tbody>
 </table>

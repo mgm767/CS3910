@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>    
+<html lang="en" ng-app="cs_project">    
 <head>
     <title>Student Courses</title>
-        <!--Boostrap Code-->
+    <!--Boostrap Code-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Bootstrap JS-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -10,11 +10,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!--link to angular-->
-    <!-- "../angular/angular/min.js"-->
     <script src="angular.min.js"></script>
+    <!-- angular code-->
+    <script src="cs.module.js"></script>
+    <script src="data.tutorcs.controller.js"></script>
+    <script src="cs.filter.js"></script>
 </head>
 <!-- This is the menu bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary" ng-init="checkifloggedin()">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             
             <!-- this is a place to put the title of the page, or a logo -->
 
@@ -56,12 +59,9 @@
       <th scope="col">Course</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody ng-repeat="course in data.courses | filter:query">
     <tr>
-      <td>Introduction to Computer Science</th>
-    </tr>
-    <tr>
-      <td>Principles of Computing</th>
+      <th>{{course.name}}</th>
     </tr>
   </tbody>
 </table>
