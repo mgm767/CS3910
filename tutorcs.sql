@@ -1,6 +1,6 @@
 -- Tutor CS db info
 
-DROP TABLE IF EXISTS users, students, professors, tutors, courses, course_docs, available_sessions, scheduled_sessions;
+DROP TABLE IF EXISTS scheduled_sessions, available_sessions, course_docs, tutors, professors, students, courses, users;
 
 
 -- Each user has access to other roles, we track that we boolean fields here
@@ -139,7 +139,7 @@ INSERT INTO available_sessions(slot, course_id, tutor_id)
 	VALUES ("2018-05-05 10:00:00", "CS:1210","tutor2");
 
 -- Test data for scheduled sessions table --
-INSERT INTO scheduled_sessions(student_id)
-	VALUES("student");
-INSERT INTO scheduled_sessions(student_id)
-	VALUES("student2");
+INSERT INTO scheduled_sessions(session_id, student_id, doc_id)
+	VALUES(1, "student", 1);
+INSERT INTO scheduled_sessions(session_id, student_id, doc_id)
+	VALUES(2, "student2", 2);
