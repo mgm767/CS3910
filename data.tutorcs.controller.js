@@ -92,7 +92,25 @@
                     alert('unexpected error');
                }
             });                        
-        };       
+        };
+        
+        $scope.users = [];
+        $scope.getAccounts = function () {
+            $http.get('getAccounts.php')
+                .then(function (response) {
+                    if (response.status == 200) {
+                        if (response.data.status == 'error') {
+                            alert('error: ' + response.data.message.users);
+                        } else {
+                            console.log(response.data.value);
+                            $scope.users = response.data.value.users;
+
+                        }
+                    } else {
+                        alert('unexpected error');
+                    }
+                });
+        };
 
         
     });
