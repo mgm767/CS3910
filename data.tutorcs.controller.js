@@ -112,6 +112,34 @@
                 });
         };
 
+        $scope.setUserEditMode = function(editing, user) {
+			if (editing) {
+			 // Make a copy that we can change without losing the copy from the DB itself
+			 $scope.editUser = angular.copy(user);
+			 user.editMode = true;
+			} else {
+				$scope.editUser = null;
+				user.editMode = false;
+			}
+		};
+
+        $scope.deleteUser = function(firstName, lastName, id) {
+			if (confirm("Are you sure you want to delete " + firstName + ' ' + lastName + "?")) {	
+				$http.post('deleteUser.php', {"id": id})
+					.then(function(response) {
+						if (response.status === 200) {
+							if (response.data.status === 'error') {
+								alert('Error: ' + response.data.message);
+							} else {
+								location.reload();
+							}
+						} else {
+							alert('Something went wrong. Please try again');
+						}
+					});
+			}
+		};
+
         
     });
     
