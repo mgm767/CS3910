@@ -112,8 +112,31 @@
                 });
         };
 
+	//function to send new session info to web api to add it to the database
+	$scope.newSession = function(sessionDetails) {
+	    var sessionupload = angular.copy(sessionDetails);
+	    $http.post("tutor_available.php", sessionupload)
+		.then(function(response) {
+		    if (response.status == 200) {
+			if (response.data.status == 'error') {
+			    alert('error: ' + response.data.message);
+			} else {
+			    //successful - send user back to homepage
+			    $window.location.href = "index_tutor.html";
+			}
+		    } else {
+			alert('unexpected error');
+		    } 
+		});
+	};
+        
+        
+        
+        
+        
+        
+        
         
     });
-    
     
 } )();
