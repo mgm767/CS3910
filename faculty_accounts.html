@@ -37,43 +37,96 @@
                 <a class="nav-link text-light">Accounts<span class="sr-only">(current)</span></a>
             </li>
                 <li class="nav-item">
-                <a class="nav-link text-light" href="faculty_my_courses">My Courses</a>
+                <a class="nav-link text-light" href="faculty_my_courses.html">My Courses</a>
             </li>           
           <li class="nav-item">
-            <a class="nav-link text-light" href="login.html" ng-click="logout()">Log Out</a>
+            <a class="nav-link text-light" href="login.html">Log Out</a>
           </li>                              
 
         </ul>
         
       </div>
     </nav>
-    <br>
+    <div class="container-fluid">
+      <div class="col-lg mt-5">
+        <h2 class="text-center">Student Accounts</h2>
+        <table class="table table-bordered table-hover table-sm" ng-init="getStudentAccounts()">
+          <thead>
+            <tr class="bg-warning text-center">
+              <th scope="col">HawkID</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Administrator?</th>
+              <th scope="col">Professor?</th>
+              <th scope="col">Tutor?</th>
+              <th scope="col">Student?</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="user in users | filter:query">
+            <span ng-init="setUserEditMode(false, user)"></span>
 
-    <span ng-init="getStudentAccounts()"></span>
-    <!-- accounts list -->
-    <table class="table table-bordered table-hover table-sm">
-      <thead>
-        <tr class="bg-warning text-center">
-          <th scope="col">HawkID</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
-          <th scope="col">Administrator?</th>
-          <th scope="col">Professor?</th>
-          <th scope="col">Tutor?</th>
-          <th scope="col">Student?</th>
-        </tr>
-      </thead>
-      <tbody ng-repeat="user in studentUsers | filter:query">
-        <tr>
-          <th scope="col">{{user.hawk_id}}</th>
-          <th scope="col">{{user.first_name}}</th>
-          <th scope="col">{{user.last_name}}</th>
-          <th scope="col">{{user.administrator}}</th>
-          <th scope="col">{{user.professor}}</th>
-          <th scope="col">{{user.tutor}}</th>
-          <th scope="col">{{user.student}}</th>
-        </tr>
-      </tbody>
-    </table>
-</body>
+            <!-- Viewing user -->
+            <tr class="text-center" ng-if="!user.editMode">
+              <td scope="col">{{user.hawk_id}}</td>
+              <td scope="col">{{user.first_name}}</td>
+              <td scope="col">{{user.last_name}}</td>
+              <td scope="col" ng-class="{ 'text-success': user.administrator == '1', 'text-danger': user.administrator == '0' }">{{ (user.administrator == 1) ? 'Yes' : 'No' }}</td>
+              <td scope="col" ng-class="{ 'text-success': user.professor == '1', 'text-danger': user.professor == '0' }">{{ (user.professor == 1) ? 'Yes' : 'No' }}</td>
+              <td scope="col" ng-class="{ 'text-success': user.tutor == '1', 'text-danger': user.tutor == '0' }">{{ (user.tutor == 1) ? 'Yes' : 'No' }}</td>
+              <td scope="col" ng-class="{ 'text-success': user.student == '1', 'text-danger': user.student == '0' }">{{ (user.student == 1) ? 'Yes' : 'No' }}</td>
+              <td scope="col">
+                <button class="btn btn-info mr-2" style="width: 45%;" ng-click="setUserEditMode(true, user)" ng-disabled="editUser != null">Edit</button>
+                <button class="btn btn-danger" style="width: 45%;" ng-click="deleteUser(user.first_name, user.last_name, user.hawk_id)">Delete</button>
+              </td>            
+            </tr>
+
+            <!-- Editing user -->
+            <form name="editUserForm">
+              <tr class="text-center" ng-if="user.editMode">
+                <td scope="col">
+                  <input type="text" class="form-control" value="{{editUser.hawk_id}}" name="hawk_id" ng-model="editUser.hawk_id" ng-minlength="2" required>
+                </td>
+                <td scope="col">
+                  <input type="text" class="form-control" value="{{editUser.first_name}}" name="first_name" ng-model="editUser.first_name" ng-minlength="1" required>
+                </td>
+                <td scope="col">
+                  <input type="text" class="form-control" value="{{editUser.last_name}}" name="last_name" ng-model="editUser.last_name" ng-minlength="1" required>
+                </td>
+                <td scope="col">
+                  <select class="form-control" name="administrator" ng-model="editUser.administrator">
+                    <option value="false" ng-selected="editUser.administrator === '0'">No</option>
+                    <option value="true" ng-selected="editUser.administrator === '1'">Yes</option>
+                  </select>
+                </td>
+                <td scope="col">
+                  <select class="form-control" name="professor" ng-model="editUser.professor">
+                    <option value="false" ng-selected="editUser.professor === '0'">No</option>
+                    <option value="true" ng-selected="editUser.professor === '1'">Yes</option>
+                  </select>
+                </td>
+                <td scope="col">
+                  <select class="form-control" name="tutor" ng-model="editUser.tutor">
+                    <option value="false" ng-selected="editUser.tutor === '0'">No</option>
+                    <option value="true" ng-selected="editUser.tutor === '1'">Yes</option>
+                  </select>
+                </td>
+                <td scope="col">
+                  <select class="form-control" name="student" ng-model="editUser.student">
+                    <option value="false" ng-selected="editUser.student === '0'">No</option>
+                    <option value="true" ng-selected="editUser.student === '1'">Yes</option>
+                  </select>
+                </td>
+                <td scope="col">
+                  <button class="btn btn-success mr-2" style="width: 45%;">Save</button>
+                  <button class="btn btn-outline-danger" style="width: 45%;" ng-click="setUserEditMode(false, user)">Cancel</button>
+                </td>            
+              </tr>
+            </form>
+  
+          </tbody>
+        </table>
+      </div>
+    </div>
+</body>               
 </html>
