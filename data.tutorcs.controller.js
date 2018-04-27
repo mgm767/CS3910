@@ -9,28 +9,16 @@
     
     // datais used in the html file when defining the ng-controller attribute
     myApp.controller("dataControl", function($scope, $http, $window) {
-    
-       // $http.get('getmovies.php')
-       //     .then(function(response) {
-         //       $scope.data = response.data.value;
-         //   }
-            
-          //      );
-       
-        
+
         //Code for search bar
         $scope.query = {};
         $scope.queryBy = "$";
         
         $scope.menuHighlight = 0;
         
- 
-        
         // function to send new account information to web api to add it to the database
         $scope.login = function(accountDetails) {
           var accountupload = angular.copy(accountDetails);
-          console.log(accountDetails);
-          
           $http.post("login.php", accountupload)
             .then(function (response) {
                if (response.status == 200) {
@@ -102,9 +90,7 @@
                         if (response.data.status == 'error') {
                             alert('error: ' + response.data.message.users);
                         } else {
-                            console.log(response.data.value);
                             $scope.users = response.data.value.users;
-
                         }
                     } else {
                         alert('unexpected error');
@@ -112,28 +98,23 @@
                 });
         };
 
-	//function to send new session info to web api to add it to the database
-	$scope.newSession = function(sessionDetails) {
-	    var sessionupload = angular.copy(sessionDetails);
-	    $http.post("tutor_available.php", sessionupload)
-		.then(function(response) {
-		    if (response.status == 200) {
-			if (response.data.status == 'error') {
-			    alert('error: ' + response.data.message);
-			} else {
-			    //successful - send user back to homepage
-			    $window.location.href = "index_tutor.html";
-			}
-		    } else {
-			alert('unexpected error');
-		    } 
-		});
-	};
-        
-    
-        
-        
-        
+        //function to send new session info to web api to add it to the database
+        $scope.newSession = function(sessionDetails) {
+            var sessionupload = angular.copy(sessionDetails);
+            $http.post("tutor_available.php", sessionupload)
+            .then(function(response) {
+                if (response.status == 200) {
+                if (response.data.status == 'error') {
+                    alert('error: ' + response.data.message);
+                } else {
+                    //successful - send user back to homepage
+                    $window.location.href = "index_tutor.html";
+                }
+                } else {
+                alert('unexpected error');
+                } 
+            });
+        };
         
         $scope.setUserEditMode = function(editing, user) {
 			if (editing) {
@@ -144,24 +125,60 @@
 				$scope.editUser = null;
 				user.editMode = false;
 			}
+        };
+        
+        $scope.updateUser = function(editUser, originalUser) {
+            // In case the admin has chosed to change the hawk_id (our primary key), keep the old one so we know which row to change
+            editUser.original_hawk_id = originalUser.hawk_id;
+
+			$http.post('editUser.php', editUser)
+				.then(function(response) {
+					if (response.status === 200) {
+						if (response.data.status === 'error') {
+							alert('Error: ' + response.data.message);
+						} else {
+							$scope.setUserEditMode(false, originalUser);
+							$window.location.reload();
+						}
+					} else {
+						alert('Something went wrong. Please try again');
+					}
+				});
 		};
 
-        $scope.deleteUser = function(firstName, lastName, id) {
+        $scope.deleteUser = function(firstName, lastName, hawk_id) {
 			if (confirm("Are you sure you want to delete " + firstName + ' ' + lastName + "?")) {	
-				$http.post('deleteUser.php', {"id": id})
+				$http.post('deleteUser.php', {"hawk_id": hawk_id})
 					.then(function(response) {
 						if (response.status === 200) {
 							if (response.data.status === 'error') {
 								alert('Error: ' + response.data.message);
 							} else {
-								location.reload();
+								$window.location.reload();
 							}
 						} else {
 							alert('Something went wrong. Please try again');
 						}
 					});
 			}
-		};
+        };
+        
+        $scope.studentUsers = [];
+        $scope.getStudentAccounts = function () {
+            $http.get('getStudentAccounts.php')
+                .then(function (response) {
+                    if (response.status == 200) {
+                        if (response.data.status == 'error') {
+                            alert('error: ' + response.data.message.users);
+                        } else {
+                            console.log(response.data.value.users);
+                            $scope.users = response.data.value.users;
+                        }
+                    } else {
+                        alert('unexpected error');
+                    }
+                });
+        };
         
     });
     
