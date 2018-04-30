@@ -80,6 +80,7 @@
         // if the session variable 'hawkId' is set, then we assume that the user is logged in
         session_start();
         $_SESSION['hawkId'] = $hawkId;
+        $_SESSION['autorizedRole'] = $role;
         
         // send response back
         $response = array();

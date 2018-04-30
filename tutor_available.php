@@ -1,7 +1,6 @@
 <?php
 
-
-//we need to include these two gfiles in order to work with the database
+//we need to include these two files in order to work with the database
 include_once('config.php');
 include_once('dbutils.php');
 
@@ -13,14 +12,14 @@ $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 $data = json_decode(file_get_contents('php://input'), true);
 
 
-
-
 //get each piece of data
-
-// 'slot' matches the name attribute in the form
 $slot = $data['slot'];
 $course_id = $data['course_id'];
-$tutor_id = $data['tutor_id'];
+
+// Get tutor's hawk_id and role from session info
+session__start();
+$tutor_id = $_SESSION['hawkId'];
+$role = $_SESSION['autorizedRole'];
 
 //set up variables to handle errors
 // is complete will be false if we find any problems when checking on the data
@@ -33,7 +32,7 @@ $errorMessage = "";
 // Validation
 //
 
-//check is name meets criteria
+//check is time slot meets criteria
 if (!isset($slot) || (strlen($slot) < 2)) {
 	$isComplete = false;
 	$errorMessage .= "Please enter a slot with at least 2 characters.";
@@ -48,18 +47,14 @@ if (!isset($course_id) || (strlen($course_id) < 2)) {
 	$course_id = makeStringSafe($db,$course_id);
 }
 
-if (!isset($tutor_id) || (strlen($tutor_id) < 2)) {
+// Ensure that a tutor is currently logged in
+if ($role != 'tutor') {
 	$isComplete = false;
-	$errorMessage .= "Please enter a tutor Id with at least 2 characters.";	
-} else {
-	$tutor_id = makeStringSafe($db,$tutor_id);
+	$errorMessage .= " Must be a tutor to add an available tutoring session.";
 }
 
 
-
-
-
-//check if we already have a player with the same name, country, and club as the one we are processing
+//check if we already have a session with the same time, course, and tutor
 if ($isComplete) {
 	//set up a query to check if this movie is in the database
 	$query = "SELECT slot FROM available_sessions WHERE slot='$slot' AND course_id='$course_id' AND tutor_id='$tutor_id'";
@@ -83,8 +78,8 @@ if ($isComplete) {
 	//run the insert statement
 	queryDB($insertquery, $db);
 	
-	// get the id for movie we just entered
-	$movieid = mysqli_insert_id($db);
+	// get the id for session we just entered
+	$id = mysqli_insert_id($db);
 	
 	//send a response back to angular
 	$response = array();

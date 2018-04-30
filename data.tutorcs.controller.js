@@ -115,6 +115,28 @@
                 } 
             });
         };
+
+        // Fetch all available sessions for display
+        $scope.availableSessions = [];
+        $scope.getAvailableSessions = function() {
+            $http.get('getAvailableSessions.php')
+                .then(function(response) {
+                    if (response.status === 200) {
+                        if (response.data.status === 'error') {
+                            alert('Error: ' + response.data.message);
+                        } else {
+                            console.log(response.data.value.sessions);
+                            $scope.availableSessions = response.data.value.sessions;
+                        }
+                    } else {
+                        alert('Something went wrong. Please try again');
+                    }
+                });
+        };
+
+        $scope.signUpForSession = function(sessionId) {
+            console.log('Siging up..');
+        };
         
         $scope.setUserEditMode = function(editing, user) {
 			if (editing) {
