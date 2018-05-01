@@ -109,9 +109,9 @@ INSERT INTO courses(course_id, name)
 
 -- Test data for students table --
 INSERT INTO students(hawk_id, phone_number, course_id, session_credits)
-	VALUES ("student", "319-867-5309","CS:1210", 25);
+	VALUES ("student", "319-867-5309","CS:1210", 10);
 INSERT INTO students(hawk_id, phone_number, course_id, session_credits)
-	VALUES ("student2", "786-829-5378","CS:1110", 30);
+	VALUES ("student2", "786-829-5378","CS:1110", 20);
 	
 --Test data for Professors table --
 INSERT INTO professors(hawk_id, course_id)

@@ -185,6 +185,24 @@
 			}
         };
         
+        $scope.facultyCourses = [];
+        $scope.getFacultyCourses = function () {
+            $http.get('getFacultyCourses.php')
+            .then(function(response) {
+                if (response.status == 200) {
+                    if (response.data.status == 'error') {
+                        alert('error: ' + response.data.message.courses);
+                    } else {
+                        console.log(response.data.value.courses);
+                        $scope.courses = response.data.value.courses;
+                    }
+                } else {
+                        alert('unexpected error');
+                    }
+                });
+            }
+        };
+        
         $scope.studentUsers = [];
         $scope.getStudentAccounts = function () {
             $http.get('getStudentAccounts.php')
