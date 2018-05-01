@@ -200,7 +200,6 @@
                         alert('unexpected error');
                     }
                 });
-            }
         };
         
         $scope.studentUsers = [];
@@ -221,5 +220,5 @@
         };
         
     });
-    
-} )();
+
+})();
