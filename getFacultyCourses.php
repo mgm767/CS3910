@@ -1,12 +1,18 @@
 <?php
 
+//include these to work with the database
 include_once('config.php');
 include_once('dbutils.php');
 
 $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 
-$query = "SELECT * FROM courses INNER JOIN professors on courses.course_id=professors.course_id where professors.hawk_id=;";
+session_start(); // getting hawkID of current user
+$hawkID = $_SESSION['hawkID'];
 
+//query to obtain just the courses that the currently logged in professor instructs
+$query = "SELECT * FROM courses INNER JOIN professors on courses.course_id=professors.course_id where professors.hawk_id=$hawkID;";
+
+//query to database
 $result = queryDB($query, $db);
 
 $courses = array();
@@ -18,6 +24,7 @@ while ($currentCourse = nextTuple($result)) {
         $i++;
 }
 
+//make JSON object
 $response = array();
 $response['status'] = 'success';
 $response['value']['courses'] = $courses;
