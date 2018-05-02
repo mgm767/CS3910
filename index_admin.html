@@ -88,31 +88,31 @@
                   <input type="text" class="form-control" value="{{editUser.last_name}}" name="last_name" ng-model="editUser.last_name" ng-minlength="1" required>
                 </td>
                 <td scope="col">
-                  <select class="form-control" name="administrator" ng-model="editUser.administrator">
+                  <select class="form-control" name="administrator" required>
                     <option value="false" ng-selected="editUser.administrator === '0'">No</option>
                     <option value="true" ng-selected="editUser.administrator === '1'">Yes</option>
                   </select>
                 </td>
                 <td scope="col">
-                  <select class="form-control" name="professor" ng-model="editUser.professor">
+                  <select class="form-control" name="professor" required>
                     <option value="false" ng-selected="editUser.professor === '0'">No</option>
                     <option value="true" ng-selected="editUser.professor === '1'">Yes</option>
                   </select>
                 </td>
                 <td scope="col">
-                  <select class="form-control" name="tutor" ng-model="editUser.tutor">
+                  <select class="form-control" name="tutor" required>
                     <option value="false" ng-selected="editUser.tutor === '0'">No</option>
                     <option value="true" ng-selected="editUser.tutor === '1'">Yes</option>
                   </select>
                 </td>
                 <td scope="col">
-                  <select class="form-control" name="student" ng-model="editUser.student">
+                  <select class="form-control" name="student" required>
                     <option value="false" ng-selected="editUser.student === '0'">No</option>
                     <option value="true" ng-selected="editUser.student === '1'">Yes</option>
                   </select>
                 </td>
                 <td scope="col">
-                  <button class="btn btn-success mr-2" style="width: 45%;">Save</button>
+                  <button class="btn btn-success mr-2" style="width: 45%;" ng-click="updateUser(editUser, user)">Save</button>
                   <button class="btn btn-outline-danger" style="width: 45%;" ng-click="setUserEditMode(false, user)">Cancel</button>
                 </td>            
               </tr>
