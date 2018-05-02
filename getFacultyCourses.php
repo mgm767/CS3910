@@ -10,7 +10,7 @@ session_start(); // getting hawkID of current user
 $hawkID = $_SESSION['hawkID'];
 
 //query to obtain just the courses that the currently logged in professor instructs
-$query = "SELECT * FROM courses INNER JOIN professors on courses.course_id=professors.course_id where professors.hawk_id=$hawkID;";
+$query = "SELECT courses.course_id, courses.name FROM courses INNER JOIN professors on courses.course_id=professors.course_id where professors.hawk_id='$hawkID';";
 
 //query to database
 $result = queryDB($query, $db);
