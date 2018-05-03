@@ -52,21 +52,28 @@
         </nav>
         <br>
 <table class="table table-bordered table-hover table-sm">
-  <thead>
-    <tr class="bg-warning text-center">
-      <th scope="col">Course</th>
-      <th scope="col">Date</th>
-      <th scope="col">Time</th>
-      <th scope="col">Tutor</th>
-    </tr>
-  </thead>
-  <tbody ng-repeat="session in data.available_sessions | filter:query">
-    <tr>
-      <td>{{session.course_id}}</th>
-      <td>{{session.slot}}</td>
-      <td>{{session.slot}}</td>
-      <td>{{session.tutor_id}}</td>
-    </tr>
-  </tbody>
-</table>
+<body ng-controller="dataControl">
+    <div class="container-fluid">
+      <div class="col-lg mt-5">
+        <h2 class="text-center">Available Sessions</h2>
+        <table class="table table-bordered table-hover table-sm" ng-init="getAvailableSessions_student()">
+          <thead>
+            <tr class="bg-warning text-center">
+              <th scope="col">Course ID</th>
+              <th scope="col">Date/Time</th>
+              <th scope="col">Tutor</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="available_session in sessions | filter:query">
+            <!-- Viewing course -->
+            <tr class="text-center">
+              <td scope="col">{{available_session.course_id}}</td>
+              <td scope="col">{{available_session.slot}}</td>
+              <td scope="col">{{available_session.tutor_id}}</td> 
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</body>               
 </html>

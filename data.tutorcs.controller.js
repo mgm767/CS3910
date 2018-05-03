@@ -96,6 +96,23 @@
                     }
                 });
         };
+        
+        $scope.available_sessions_student = [];
+        $scope.getAvailableSessions_student = function () {
+            $http.get('getAvailableSessions_student.php')
+                .then(function (response) {
+                    if (response.status == 200) {
+                        if (response.data.status == 'error') {
+                            alert('error: ' + response.data.message.sessions);
+                        } else {
+                            console.log(response.data.value.sessions);
+                            $scope.sessions = response.data.value.sessions;
+                        }
+                    } else {
+                        alert('unexpected error');
+                    }
+                });
+        };
 
         //function to send new session info to web api to add it to the database
         $scope.newSession = function(sessionDetails) {
