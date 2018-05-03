@@ -10,7 +10,10 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 //get each piece of data
 //name matches the name attribute in the form
-$hawkid = $data['hawkid'];
+$hawkid = $data['hawk_id'];
+$first_name = $data['first_name'];
+$last_name = $data['last_name'];
+
 
 //set up variables to handle errors
 //is complete will be false if we find any problems when checking on the data
@@ -29,11 +32,11 @@ if (!isset($hawkid) || (strlen($hawkid) < 4 )) {
 	$hawkid = makeStringSafe($db, $hawkid);
 
 }
-//check if we already have a player with the same name, country, and club as the one we are processing.
 
+//check if we already have a user with the same hawk_id as the one we are processing.
 if ($isComplete) {
-	//set up a query to check if this player is in the database already
-	$query = "SELECT hawk_id FROM students WHERE hawk_id='$hawkid'"; 
+	//set up a query to check if this user is in the database already
+	$query = "SELECT hawk_id FROM users WHERE hawk_id='$hawkid'"; 
 
 	//we need to run the query. 
 	$result = queryDB($query, $db);
@@ -49,10 +52,10 @@ if ($isComplete) {
 
 }
 
-//if we got this far and $isComplete is true, it means we should add the player to the DB
+//if we got this far and $isComplete is true, it means we should add the user to the DB
 if ($isComplete) {
 	//we willl setup the insert statement to add this new record to the database
-	$insertquery = "INSERT INTO students (hawk_id) VALUES ('$hawkid')";
+	$insertquery = "INSERT INTO users (hawk_id, first_name, last_name) VALUES ('$hawkid', '$first_name', '$last_name')";
 
 	//run the insert statement
 	queryDB($insertquery, $db);
@@ -63,7 +66,7 @@ if ($isComplete) {
 	//send a response back to angular
 	$response = array();
 	$response['status'] = 'success';
-	$response['id'] = $hawkid;
+	$response['hawk_id'] = $hawkid;
 	header('Content-Type: application/json');
 	echo(json_encode($response));
 

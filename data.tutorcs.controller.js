@@ -167,6 +167,7 @@
 					}
 				});
 		};
+        
 
         $scope.deleteUser = function(firstName, lastName, hawk_id) {
 			if (confirm("Are you sure you want to delete " + firstName + ' ' + lastName + "?")) {	
@@ -183,7 +184,25 @@
 						}
 					});
 			}
+        };  
+        
+        //create a new account
+        $scope.newAccount = function () {
+            $http.post('admin_add_account.php')
+            .then(function(response) {
+                if (response.status == 200) {
+                    if (response.data.status == 'error') {
+                        alert('error: ' + response.data.message.users);
+                    } else {
+                        console.log(response.data.value.users);
+                        $scope.users = response.data.value.users;
+                    }
+                } else {
+                        alert('unexpected error');
+                    }
+                });
         };
+        
         
         $scope.facultyCourses = [];
         $scope.getFacultyCourses = function () {
