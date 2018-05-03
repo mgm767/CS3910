@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="cs_project">    
+<html lang="en" ng-app="cs_project">
 <head>
     <title>Student Courses</title>
-    <!--Boostrap Code-->
+        <!--Boostrap Code-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Bootstrap JS-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -54,15 +54,26 @@
         </nav>
         <br>
 <table class="table table-bordered table-hover table-sm">
-  <thead>
-    <tr class="bg-warning text-center">
-      <th scope="col">Course</th>
-    </tr>
-  </thead>
-  <tbody ng-repeat="course in data.courses | filter:query">
-    <tr>
-      <th>{{course.name}}</th>
-    </tr>
-  </tbody>
-</table>
+<body ng-controller="dataControl">
+    <div class="container-fluid">
+      <div class="col-lg mt-5">
+        <h2 class="text-center">Current Courses</h2>
+        <table class="table table-bordered table-hover table-sm" ng-init="getStudentCourses()">
+          <thead>
+            <tr class="bg-warning text-center">
+              <th scope="col">Course ID</th>
+              <th scope="col">Course Name</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="course in courses | filter:query">
+            <!-- Viewing course -->
+            <tr class="text-center">
+              <td scope="col">{{course.course_id}}</td>
+              <td scope="col">{{course.name}}</td>      
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</body>               
 </html>

@@ -12,8 +12,7 @@
 
         //Code for search bar
         $scope.query = {};
-        $scope.queryBy = "$";
-        
+        $scope.queryBy = "$"; 
         $scope.menuHighlight = 0;
         
         // function to send new account information to web api to add it to the database
@@ -210,7 +209,23 @@
             .then(function(response) {
                 if (response.status == 200) {
                     if (response.data.status == 'error') {
-                        alert('error: ' + response.data.message.courses);
+                        alert('error: ' + response.data.message);
+                    } else {
+                        console.log(response.data.value.courses);
+                        $scope.courses = response.data.value.courses;
+                    }
+                } else {
+                        alert('unexpected error');
+                    }
+                });
+        };
+        $scope.studentCourses = [];
+        $scope.getStudentCourses = function () {
+            $http.get('getStudentCourses.php')
+            .then(function(response) {
+                if (response.status == 200) {
+                    if (response.data.status == 'error') {
+                        alert('error: ' + response.data.message);
                     } else {
                         console.log(response.data.value.courses);
                         $scope.courses = response.data.value.courses;
