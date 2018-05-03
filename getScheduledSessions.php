@@ -10,7 +10,8 @@ session_start(); // getting hawkID of current user
 $hawkId = $_SESSION['hawkId'];
 
 //query to obtain just the scheduled sessions for this user
-$query = "SELECT available_sessions.course_id, available_sessions.slot, available_sessions.tutor_id , scheduled_sessions.student_id, scheduled_sessions.doc_id FROM available_sessions INNER JOIN scheduled_sessions on available_sessions.id = scheduled_sessions.id WHERE available_sessions.student_id = '$hawkId';";
+$query = "SELECT * FROM scheduled_sessions JOIN available_sessions on (scheduled_sessions.id=available_sessions.id) WHERE (scheduled_sessions.student_id='$hawkId');";
+//$query = "SELECT available_sessions.course_id, available_sessions.slot, available_sessions.tutor_id , scheduled_sessions.student_id, scheduled_sessions.doc_id FROM available_sessions INNER JOIN scheduled_sessions on available_sessions.id = scheduled_sessions.id WHERE available_sessions.student_id = '$hawkId';";
 
 //query to database
 $result = queryDB($query, $db);
