@@ -39,9 +39,6 @@
                    <li class="nav-item">
                     <a class="nav-link text-light" href="faculty_my_courses.html">My Courses<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="faculty_documents.html">Course Documents</a>
-                </li>
               <li class="nav-item">
                 <a class="nav-link text-light" href="login.html">Log Out</a>
               </li>                              
@@ -60,13 +57,18 @@
             <tr class="bg-warning text-center">
               <th scope="col">Course ID</th>
               <th scope="col">Course Name</th>
+              <th scope="col">Course Documents</th>
             </tr>
           </thead>
           <tbody ng-repeat="course in courses | filter:query">
             <!-- Viewing course -->
             <tr class="text-center">
               <td scope="col">{{course.course_id}}</td>
-              <td scope="col">{{course.name}}</td>      
+              <td scope="col">{{course.name}}</td>
+              <td scope="col">
+                <button class="btn btn-info mr-2" style="width: 45%;" ng-click="">View</button>
+                <button class="btn btn-success" style="width: 45%;" ng-click="">Add</button>
+              </td> 
             </tr>
           </tbody>
         </table>

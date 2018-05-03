@@ -5,8 +5,10 @@ include_once('dbutils.php');
 
 $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 
-$tablename = "users";
-$query = "SELECT * FROM $tablename WHERE student=1;";
+session_start();
+$hawkId = $_SESSION['hawkId'];
+
+$query = "SELECT * FROM users RIGHT JOIN students on (users.hawk_id=students.hawk_id) WHERE users.student=1;";
 
 $result = queryDB($query, $db);
 
