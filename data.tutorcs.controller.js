@@ -96,6 +96,25 @@
                     }
                 });
         };
+
+        
+         $scope.sessions = [];
+        $scope.getSessions = function () {
+            $http.get('tutor_scheduled.php')
+                .then(function (response) {
+                    if (response.status == 200) {
+                        if (response.data.status == 'error') {
+                            alert('error: ' + response.data.message.sessions);
+                        } else {
+                            console.log(response.data.value.sessions);
+                            $scope.sessions = response.data.value.sessions;
+                        }
+                    } else {
+                        alert('unexpected error');
+                    }
+                });
+        };        
+        
         
         $scope.available_sessions_student = [];
         $scope.getAvailableSessions_student = function () {
