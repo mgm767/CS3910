@@ -13,11 +13,25 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 
 //get each piece of data
-$slot = $data['slot'];
+$phpDate = $data['phpDate'];
+//$slotTime = $data['slotTime'];
 $course_id = $data['course_id'];
 
+
+
+////// TEMPORARY ERROR CODE TO SEE WHAT WE GOT
+$response = array();
+$response['status'] = 'error';
+$response['message'] = $errorMessage . " date=" . $phpDate . /*" time=" . $slotTime .*/ " id=" . $course_id;
+header('Content-Type: application/json');
+echo(json_encode($response));
+exit;
+////// TEMPORARY ERROR CODE
+
+
+
 // Get tutor's hawk_id and role from session info
-session__start();
+session_start();
 $tutor_id = $_SESSION['hawkId'];
 $role = $_SESSION['autorizedRole'];
 
