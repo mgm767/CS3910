@@ -65,6 +65,7 @@ CREATE TABLE available_sessions (
 	course_id VARCHAR(15) NOT NULL,
 	FOREIGN KEY (course_id) REFERENCES courses (course_id),
 	tutor_id VARCHAR(50) NOT NULL,
+	available BOOLEAN NOT NULL,
 	FOREIGN KEY (tutor_id) REFERENCES users (hawk_id),
 	PRIMARY KEY (id)
 );
@@ -167,34 +168,34 @@ INSERT INTO course_docs(course_id, doc_name)
 	VALUES ("UWSD:5500", "Coding Underwater for Dummies");
 
 --Test data for available sessions table --
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-04 10:00:00", "CS:1110","tutor");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-05 10:00:00", "CS:1110","tutor");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-06 10:00:00", "CS:1110","tutor");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-07 10:00:00", "CS:1110","tutor");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-08 10:00:00", "CS:1110","tutor");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-05 10:00:00", "CS:1210","tutor2");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-05 12:00:00", "CS:1210","tutor2");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-06-05 10:00:00", "CS:1210","tutor2");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-15 10:00:00", "CS:1210","tutor2");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-07 10:00:00", "CS:1110","tutor2");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-10 01:00:00", "CS:1110","tutor2");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-11 02:00:00", "CS:1110","tutor2");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-09 10:00:00", "CS:1110","tutor2");
-INSERT INTO available_sessions(slot, course_id, tutor_id)
-	VALUES ("2018-05-09 08:00:00", "CS:1210","tutor2");
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-04 10:00:00", "CS:1110","tutor", FALSE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-05 10:00:00", "CS:1110","tutor", FALSE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-06 10:00:00", "CS:1110","tutor", FALSE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-07 10:00:00", "CS:1110","tutor", FALSE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-08 10:00:00", "CS:1110","tutor", FALSE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-05 10:00:00", "CS:1210","tutor2", FALSE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-05 12:00:00", "CS:1210","tutor2", TRUE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-06-05 10:00:00", "CS:1210","tutor2", TRUE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-15 10:00:00", "CS:1210","tutor2", TRUE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-07 10:00:00", "CS:1110","tutor2", TRUE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-10 01:00:00", "CS:1110","tutor2", TRUE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-11 02:00:00", "CS:1110","tutor2", TRUE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-09 10:00:00", "CS:1110","tutor2", TRUE);
+INSERT INTO available_sessions(slot, course_id, tutor_id, available)
+	VALUES ("2018-05-09 08:00:00", "CS:1210","tutor2", TRUE);
 
 -- Test data for scheduled sessions table --
 INSERT INTO scheduled_sessions(session_id, student_id, doc_id)
