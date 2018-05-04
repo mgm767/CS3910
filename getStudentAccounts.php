@@ -8,7 +8,7 @@ $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 session_start();
 $hawkId = $_SESSION['hawkId'];
 
-$query = "SELECT * FROM users RIGHT JOIN students on (users.hawk_id=students.hawk_id) WHERE users.student=1;";
+$query = "SELECT * FROM users RIGHT JOIN students on (users.hawk_id=students.hawk_id) WHERE users.student=1 AND students.course_id=(SELECT professors.course_id FROM professors WHERE professors.hawk_id='$hawkId');";
 
 $result = queryDB($query, $db);
 
