@@ -49,43 +49,26 @@
                 <!-- slot date for session -->
                 <div class="form-group" ng-class="{'text-danger': newAvaiSessForm.slotDate.$invalid && newAvaiSessForm.slotDate.$touched, 'text-success': !newAvaiSessForm.slotDate.$invalid && newAvaiSessForm.slotDate.$touched}">
                     <label>Date/Time (ex: 2018-05-05):</label>
-                    <input type="date" id="slotDate" class="form-control" ng-class="{ 'is-invalid': newAvaiSessForm.slotDate.$invalid && newAvaiSessForm.slotDate.$touched, 'is-valid': !newAvaiSessForm.slotDate.$invalid && newAvaiSessForm.slotDate.$touched}" name="slotDate" ng-model="session.slotDate" required/>
-                    
-                    <script>
-                        //phpDate = document.getElementById("slotDate").value ="yyyy-MM-dd";
-                    </script>
+                    <input type="date" class="form-control" ng-class="{ 'is-invalid': newAvaiSessForm.slotDate.$invalid && newAvaiSessForm.slotDate.$touched, 'is-valid': !newAvaiSessForm.slotDate.$invalid && newAvaiSessForm.slotDate.$touched}" name="slotDate" ng-model="slotDate" required/>
                     <p ng-show="newAvaiSessForm.slotDate.$invalid && newAvaiSessForm.slotDate.$touched" class="help-block">This Slot Time is Not Available</p>
                 </div>
 
                 <!-- slot time for session -->
                 <div class="form-group" ng-class="{'text-danger': newAvaiSessForm.slotTime.$invalid && newAvaiSessForm.slotTime.$touched, 'text-success': !newAvaiSessForm.slotTime.$invalid && newAvaiSessForm.slotTime.$touched}">
                     <label>Date/Time (ex: 10:30 am):</label>
-                    <input type="time" id="slotTime" class="form-control" ng-class="{ 'is-invalid': newAvaiSessForm.slotTime.$invalid && newAvaiSessForm.slotTime.$touched, 'is-valid': !newAvaiSessForm.slotTime.$invalid && newAvaiSessForm.slotTime.$touched}" name="slotTime" ng-model="session.slotTime" required/>
+                    <input type="time" class="form-control" ng-class="{ 'is-invalid': newAvaiSessForm.slotTime.$invalid && newAvaiSessForm.slotTime.$touched, 'is-valid': !newAvaiSessForm.slotTime.$invalid && newAvaiSessForm.slotTime.$touched}" name="slotTime" ng-model="slotTime" required/>
                     <p ng-show="newAvaiSessForm.slotTime.$invalid && newAvaiSessForm.slotTime.$touched" class="help-block">This Slot Time is Not Available</p>
                 </div>
                 
                 <!-- course_id -->
                 <div class="form-group" ng-class="{'text-danger': newAvaiSessForm.course_id.$invalid && newAvaiSessForm.course_id.$touched, 'text-success': !newAvaiSessForm.course_id.$invalid && newAvaiSessForm.course_id.$touched}">
                     <label>Course ID (ex: CS:1110) :</label>
-                    <input type="text" class="form-control" ng-class="{ 'is-invalid': newAvaiSessForm.course_id.$invalid && newAvaiSessForm.course_id.$touched, 'is-valid': !newAvaiSessForm.course_id.$invalid && newAvaiSessForm.course_id.$touched}"name="course_id" ng-model="session.course_id" ng-minlength= "2" required/>
+                    <input type="text" class="form-control" ng-class="{ 'is-invalid': newAvaiSessForm.course_id.$invalid && newAvaiSessForm.course_id.$touched, 'is-valid': !newAvaiSessForm.course_id.$invalid && newAvaiSessForm.course_id.$touched}"name="course_id" ng-model="course_id" ng-minlength= "2" required/>
                     <p ng-show="newAvaiSessForm.course_id.$invalid && newAvaiSessForm.course_id.$touched" class="help-block">The Course_ID must be be at least two characters long</p>
                     <button class="btn btn-success" ng-click="newSession(session)" ng-disabled="newAvaiSessForm.$invalid">Add Session</button>
-
                 </div>
             </form>
-                <script>
-                    dateTime = function(slotDate, slotTime) {
-                        timeString = slotTime.getHours() + ':' + slotTime.getMinutes() + ':00';
-                        var year = slotDate.getFullYear();
-                        var month = slotDate.getMonth(); 
-                        var day = slotDate.getDate();
-                        var dateString = '' + year + '-' + month + '-' + day;
-                        var phpDate = new Date(dateString + ' ' + timeString);
-                        //var slotTime = new Date(timeString + ' ' + dateString);
-                        return phpDate;
-                    };               
-                </script>
-            
+                        
         </div>
     </div>
 </body>
