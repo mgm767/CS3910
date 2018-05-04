@@ -237,7 +237,6 @@
 					});
 			}
         };  
-        
         //create a new account
         $scope.newAccount = function () {
             $http.post('admin_add_account.php')
