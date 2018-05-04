@@ -6,8 +6,11 @@ include_once('dbutils.php');
 
 $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 
+session_start();
+$hawkId = $_SESSION['hawkId'];
+
 //query to obtain just the available_sessions
-$query = "SELECT * from available_sessions;";
+$query = "SELECT * from available_sessions WHERE available_sessions.course_id=(SELECT course_id FROM students WHERE hawk_id='$hawkId');";
 
 //query to database
 $result = queryDB($query, $db);

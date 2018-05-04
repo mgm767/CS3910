@@ -62,6 +62,7 @@
               <th scope="col">Course ID</th>
               <th scope="col">Date/Time</th>
               <th scope="col">Tutor</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody ng-repeat="available_session in sessions | filter:query">
@@ -69,7 +70,10 @@
             <tr class="text-center">
               <td scope="col">{{available_session.course_id}}</td>
               <td scope="col">{{available_session.slot}}</td>
-              <td scope="col">{{available_session.tutor_id}}</td> 
+              <td scope="col">{{available_session.tutor_id}}</td>
+              <td scope="col">
+                <button class="btn btn-success" style="width: 45%;" ng-click="">Schedule</button>
+              </td> 
             </tr>
           </tbody>
         </table>
