@@ -125,7 +125,6 @@
                         if (response.data.status == 'error') {
                             alert('error: ' + response.data.message);
                         } else {
-                            console.log(response.data.value.sessions);
                             $scope.available_sessions_student = response.data.value.sessions;
                             $scope.credits = response.data.value.credits;
                         }
@@ -141,10 +140,10 @@
                 .then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 'error') {
-                            alert('error: ' + response.data.message.sessions);
+                            alert('error: ' + response.data.message);
                         } else {
-                            console.log(response.data.value.sessions);
                             $scope.sessions = response.data.value.sessions;
+                            $scope.credits = response.data.value.credits;
                         }
                     } else {
                         alert('unexpected error');

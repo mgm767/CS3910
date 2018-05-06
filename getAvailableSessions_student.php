@@ -17,6 +17,7 @@ $query = "SELECT sessions.id, users.first_name, users.last_name, sessions.course
           FROM $tablename JOIN users ON users.hawk_id='$hawkId'
           JOIN students ON students.hawk_id='$hawkId'
           WHERE sessions.course_id=students.course_id
+          AND sessions.slot >= CURDATE()
           AND available=TRUE
           ORDER BY slot ASC;";
 

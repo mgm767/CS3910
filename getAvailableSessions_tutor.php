@@ -15,6 +15,7 @@ $query = "SELECT id, course_id, DATE_FORMAT(slot, '%M %D, %Y %H:%i %p') as slot_
           FROM $tablename
           WHERE tutor_id='$hawkId'
           AND available=TRUE
+          AND sessions.slot >= CURDATE()
           ORDER BY slot ASC;";
 
 $result = queryDB($query, $db);
