@@ -7,7 +7,7 @@ $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 // Receive data from client
 $data = json_decode(file_get_contents('php://input'), true);
 
-$session_id = $data['session_id']
+$session_id = $data['session_id'];
 
 $isComplete = true;
 $errorMessage = '';
