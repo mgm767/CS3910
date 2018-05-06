@@ -17,8 +17,8 @@
 
     <!--link to angular-->
     <script src="angular.min.js"></script>
-    <script src="cs.module.js"></script>    
-    <script src="data.tutorcs.controller.js"></script>           
+    <script src="cs.module.js"></script>
+    <script src="data.tutorcs.controller.js"></script>
 </head>
 
 <body ng-controller="dataControl">
@@ -26,46 +26,51 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary" ng-init="checkifloggedin()">
         <!-- this is a place to put the title of the page, or a logo -->
         <a class="navbar-brand text-warning" href="index_student.html"><b>Student Homepage</b></a>
-        
+
         <!-- definition of the buton you see if the screen is too small and you can't fit the full menu -->
         <!-- make sure the data-target and aria-controls match the div with the content you want to show -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-    
+
         <!-- the id should match the data-target and aria-controls for the navbar-toggler above if you want this to show up on small screens when they expand the menu -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- log in / log out -->
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <a class="nav-link text-light" href="student_scheduled.html">Scheduled Sessions<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="student_available.html">Available Sessions</a>
+                    <a class="nav-link text-light" href="index_student.html">Available Sessions</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light" href="student_my_courses.html">My Courses</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link text-light" href="login.html" ng-click="logout()">Log Out</a>
-                </li>                              
+                </li>
             </ul>
         </div>
     </nav>
 
-    <section class="container-fluid text-center" ng-init="getAvailableSessions()">
+    <section class="container-fluid text-center" ng-init="getAvailableSessions_student()">
+        <br>
         <h2 class="row justify-content-center">Available tutoring sessions</h2>
-
-        <div ng-repeat="session in availableSessions | filter:query">
-            <div class="card mt-2 mr-2" style="width: 18rem;">
+        <br>
+        <div class="float-left" ng-repeat="session in available_sessions_student | filter:query" style="display:inline-block;">
+            <div class="card mt-2 mr-2" style="width: 17rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ session.slot }}</h5>
+                    <h5 class="card-title text-info">{{ session.slot_date }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">{{ session.course_id }}</h6>
-                    <p class="card-text">{{ session.tutor_id }}</p>
+                    <p class="card-text">
+                        <span>{{ session.first_name }}</span> <span>{{ session.last_name }}</span>
+                    </p>
                     <button class="btn btn-success" ng-click="signUpForSession(session.id)">Add Session</button>
                 </div>
             </div>
         </div>
+        <br>
+
     </section>
 </body>
-</html> 
+</html>

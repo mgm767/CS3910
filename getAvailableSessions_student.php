@@ -9,8 +9,15 @@ $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 session_start();
 $hawkId = $_SESSION['hawkId'];
 
-//query to obtain just the available_sessions
-$query = "SELECT * from available_sessions WHERE available_sessions.course_id=(SELECT course_id FROM students WHERE hawk_id='$hawkId');";
+$tablename = 'sessions';
+
+//query to obtain just the sessions with readable dates
+$query = "SELECT sessions.id, users.first_name, users.last_name, course_id,
+          DATE_FORMAT(sessions.slot, '%M %D, %Y %H:%i %p') as slot_date
+          FROM $tablename JOIN users ON hawk_id='$hawkId'
+          WHERE course_id=(SELECT course_id FROM students WHERE hawk_id='$hawkId')
+          AND available=TRUE
+          ORDER BY slot ASC;";
 
 //query to database
 $result = queryDB($query, $db);
