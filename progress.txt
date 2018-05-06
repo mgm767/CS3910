@@ -15,6 +15,7 @@ RUBRIC CHECKLIST: (Y/N)
     - tutors set available times -- Y
     -- tutors see upcoming appointments -- Y
     -- tutors can cancel appointments -- N
+    -- tutors can delete unscheduled appointments -- Y
 
 4. Faculty and Administrator (10 pts):
     -faculty can assign problem sets to courses -- N
