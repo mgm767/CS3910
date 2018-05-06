@@ -13,7 +13,6 @@ $tablename = 'sessions';
 
 //query to obtain just the sessions with readable dates
 $query = "SELECT sessions.id, users.first_name, users.last_name, sessions.course_id,
-          students.session_credits as credits,
           DATE_FORMAT(sessions.slot, '%M %D, %Y %H:%i %p') as slot_date
           FROM $tablename JOIN users ON users.hawk_id='$hawkId'
           JOIN students ON students.hawk_id='$hawkId'
@@ -21,8 +20,12 @@ $query = "SELECT sessions.id, users.first_name, users.last_name, sessions.course
           AND available=TRUE
           ORDER BY slot ASC;";
 
+$queryCredits = "SELECT session_credits FROM students WHERE hawk_id='$hawkId';";
+
 //query to database
 $result = queryDB($query, $db);
+$resultCredits = queryDB($queryCredits, $db);
+
 
 $sessions = array();
 
@@ -33,11 +36,13 @@ while ($currentSession = nextTuple($result)) {
         $i++;
 }
 
+$creditsRow = nextTuple($resultCredits);
+
 //make JSON object
 $response = array();
 $response['status'] = 'success';
 $response['value']['sessions'] = $sessions;
-$response['value']['credits'] = $sessions[0]['credits'];
+$response['value']['credits'] = $creditsRow['session_credits'];
 header('Content-Type: application/json');
 echo(json_encode($response));
 
