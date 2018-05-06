@@ -80,7 +80,7 @@
                 <td scope="col">{{session.student_id}}</td>
                 <td scope="col">{{session.doc_id}}</td>
                 <td scope="col">
-                  <button class="btn btn-danger" style="width: 45%;" ng-click="">Cancel Session</button>
+                  <button class="btn btn-danger" style="width: 45%;" ng-click="deleteSessionTutor(session.session_id, session.slot)">Cancel Session</button>
                 </td>
               </tr>
             </tbody>
