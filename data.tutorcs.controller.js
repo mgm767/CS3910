@@ -186,8 +186,19 @@
                 });
         };
 
-        $scope.studentAddSession = function(sessionId) {
-            console.log('Siging up..');
+        $scope.studentAddSession = function(session_id) {
+          $http.post('studentAddSession.php', {session_id: session_id})
+            .then(function(response) {
+              if (response.status === 200) {
+                if (response.data.status === 'error') {
+                  alert('Error: ' + response.data.message);
+                } else {
+                  $window.location.reload();
+                }
+              } else {
+                alert('Something went wrong. Please try again');
+              }
+            });
         };
 
         $scope.setUserEditMode = function(editing, user) {
@@ -241,7 +252,6 @@
     			if (confirm("Are you sure you want to delete session number " + session_id + ' on ' + slot + "?")) {
     				$http.post('deleteSessionTutor.php', {"session_id": session_id})
     					.then(function(response) {
-                console.log(response.data);
     						if (response.status === 200) {
     							if (response.data.status === 'error') {
     								alert('Error: ' + response.data.message);

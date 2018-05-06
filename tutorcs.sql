@@ -77,7 +77,7 @@ CREATE TABLE scheduled_sessions (
 	FOREIGN KEY (session_id) REFERENCES sessions (id),
 	student_id VARCHAR(50) NOT NULL,
 	FOREIGN KEY (student_id) REFERENCES students (hawk_id),
-	doc_id INT NOT NULL,
+	doc_id INT,
 	FOREIGN KEY (doc_id) REFERENCES course_docs (id),
 	PRIMARY KEY (id)
 );
