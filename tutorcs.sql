@@ -27,7 +27,7 @@ CREATE TABLE students (
 	-- Supporting international numbers up to 15 digits
 	phone_number VARCHAR(15),
 	course_id VARCHAR(15) NOT NULL,
-	session_credits INT NOT NULL,
+	session_credits INT NOT NULL DEFAULT 20,
 	FOREIGN KEY (course_id) REFERENCES courses (course_id),
 	PRIMARY KEY (hawk_id)
 );
@@ -131,9 +131,9 @@ INSERT INTO students(hawk_id, phone_number, course_id, session_credits)
 INSERT INTO students(hawk_id, phone_number, course_id, session_credits)
 	VALUES ("student2", "786-829-5378","CS:1110", 20);
 INSERT INTO students(hawk_id, phone_number, course_id, session_credits)
-	VALUES ("student3", "786-821-5578","CS:1110", 20);
+	VALUES ("student3", "786-821-5578","CS:1110", 15);
 INSERT INTO students(hawk_id, phone_number, course_id, session_credits)
-	VALUES ("student4", "986-929-6778","CS:1020", 20);
+	VALUES ("student4", "986-929-6778","CS:1020", 10);
 INSERT INTO students(hawk_id, phone_number, course_id, session_credits)
 	VALUES ("student5", "324-758-5375","UWSD:5500", 20);
 	
