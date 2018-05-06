@@ -5,7 +5,7 @@ RUBRIC CHECKLIST: (Y/N)
 2. Authentication/Permissions (10 pts):
     - login -- Y
     - logout -- Y
-    - Passwords/Password encryption -- Y
+    - Passwords/Password encryption -- N
     
 3. Scheduling of Tutoring Appointments (20 pts):
     - students see upcoming appointments -- Y
