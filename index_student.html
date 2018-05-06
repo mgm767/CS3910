@@ -65,7 +65,9 @@
                     <p class="card-text">
                         <span>{{ session.first_name }}</span> <span>{{ session.last_name }}</span>
                     </p>
-                    <button class="btn btn-success" ng-click="studentAddSession(session.id)">Add Session</button>
+                    <button class="btn btn-success" ng-click="studentAddSession(session.id)" ng-disabled="session.credits < 1">
+                      Add Session
+                    </button>
                 </div>
             </div>
         </div>

@@ -9,9 +9,9 @@ RUBRIC CHECKLIST: (Y/N)
 
 3. Scheduling of Tutoring Appointments (20 pts):
     - students see upcoming appointments -- Y
-    - students can schedule appointments -- N
+    - students can schedule appointments -- Y
     - students can cancel appointments -- N
-    - students scheduling appointments affects budget -- N
+    - students scheduling appointments affects budget -- Y
     - tutors set available times -- Y
     -- tutors see upcoming appointments -- Y
     -- tutors can cancel appointments -- N

@@ -59,27 +59,35 @@ if($isComplete) {
 
 // Make sure the student has the right course_id to sign up for this tutoring session
 if ($isComplete) {
-	$query = "SELECT course_id FROM students WHERE hawk_id='$hawkId';";
+	$query = "SELECT course_id, session_credits FROM students WHERE hawk_id='$hawkId';";
 
 	$result = queryDB($query, $db);
-	$course_id = nextTuple($result)['course_id'];
+	$studentRow = nextTuple($result);
 
-	if ($row['course_id'] != $course_id) {
+	if ($row['course_id'] != $studentRow['course_id']) {
 		$isComplete = false;
 		$status = 'error';
 		$errorMessage .= "You may only sign up for a session for a course that you are part of. ";
+	}
+
+	if ($studentRow['session_credits'] == 0) {
+		$isComplete = false;
+		$status = 'error';
+		$errorMessage .= "You must have credits in order to sign up for a session. ";
 	}
 }
 
 // Now that our checks have passed, we can update sessions and insert into scheduled_sessions
 if ($isComplete) {
 	// Set the session to be unavailable so we don't schedule it again or delete it
-	$queryToUpdate = "UPDATE $sessions SET available=FALSE WHERE id='$session_id';";
+	$queryToUpdateSessions = "UPDATE $sessions SET available=FALSE WHERE id='$session_id';";
+	$queryToUpdateCredits =  "UPDATE students SET session_credits=session_credits-1 WHERE hawk_id='$hawkId';";
 	// Add the new scheduled session to the database
 	$queryToInsert = "INSERT INTO $scheduled(session_id, student_id) VALUES ('$session_id', '$hawkId');";
 
 	// Send the queries to the db
-	queryDB($queryToUpdate, $db);
+	queryDB($queryToUpdateSessions, $db);
+	queryDB($queryToUpdateCredits, $db);
 	queryDB($queryToInsert, $db);
 
 	$id = mysqli_insert_id($db);

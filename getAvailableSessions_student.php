@@ -12,10 +12,12 @@ $hawkId = $_SESSION['hawkId'];
 $tablename = 'sessions';
 
 //query to obtain just the sessions with readable dates
-$query = "SELECT sessions.id, users.first_name, users.last_name, course_id,
+$query = "SELECT sessions.id, users.first_name, users.last_name, sessions.course_id,
+          students.session_credits as credits,
           DATE_FORMAT(sessions.slot, '%M %D, %Y %H:%i %p') as slot_date
-          FROM $tablename JOIN users ON hawk_id='$hawkId'
-          WHERE course_id=(SELECT course_id FROM students WHERE hawk_id='$hawkId')
+          FROM $tablename JOIN users ON users.hawk_id='$hawkId'
+          JOIN students ON students.hawk_id='$hawkId'
+          WHERE sessions.course_id=students.course_id
           AND available=TRUE
           ORDER BY slot ASC;";
 
