@@ -37,6 +37,7 @@ while ($currentSession = nextTuple($result)) {
 $response = array();
 $response['status'] = 'success';
 $response['value']['sessions'] = $sessions;
+$response['value']['credits'] = $sessions[0]['credits'];
 header('Content-Type: application/json');
 echo(json_encode($response));
 

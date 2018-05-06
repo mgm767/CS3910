@@ -120,12 +120,14 @@
         $scope.getAvailableSessions_student = function () {
             $http.get('getAvailableSessions_student.php')
                 .then(function (response) {
+                  console.log(response.data.value.credits);
                     if (response.status == 200) {
                         if (response.data.status == 'error') {
                             alert('error: ' + response.data.message);
                         } else {
                             console.log(response.data.value.sessions);
                             $scope.available_sessions_student = response.data.value.sessions;
+                            $scope.credits = response.data.value.credits;
                         }
                     } else {
                         alert('unexpected error');
