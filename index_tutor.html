@@ -46,7 +46,7 @@
     </nav>
     <div class="container-fluid text-center" ng-controller="dataControl">
         <br>
-        <br>
+        <h2 class="row justify-content-center">New Available Session</h2>
         <br>
         <div class="row justify-content-center">
 
@@ -68,6 +68,29 @@
 
               <button class="btn btn-success" ng-click="newSession(session)" ng-disabled="newAvaiSessForm.$invalid">Add Session</button>
           </form>
+
+          <br>
+          <br>
+
+          <section class="container-fluid text-center ml-5" ng-init="getAvailableSessions_tutor()">
+              <br>
+              <br>
+              <h2 class="row justify-content-center">Your Available Sessions</h2>
+              <br>
+              <div class="float-left" ng-repeat="session in available_sessions_tutor | filter:query" style="display:inline-block;">
+                  <div class="card mt-2 mr-2" style="width: 17rem;">
+                      <div class="card-body">
+                          <h5 class="card-title text-info">{{ session.slot_date }}</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">{{ session.course_id }}</h6>
+                          <button class="btn btn-danger mt-2" ng-click="deleteSessionTutor(session.id, session.slot_date)">
+                            Remove
+                          </button>
+                      </div>
+                  </div>
+              </div>
+              <br>
+
+          </section>
 
         </div>
     </div>

@@ -169,16 +169,16 @@
         };
 
         // Fetch all available sessions for display
-        $scope.availableSessions = [];
-        $scope.getAvailableSessions = function() {
-            $http.get('getAvailableSessions.php')
+        $scope.available_sessions_tutor = [];
+        $scope.getAvailableSessions_tutor = function() {
+            $http.get('getAvailableSessions_tutor.php')
                 .then(function(response) {
                     if (response.status === 200) {
                         if (response.data.status === 'error') {
                             alert('Error: ' + response.data.message);
                         } else {
                             console.log(response.data.value.sessions);
-                            $scope.availableSessions = response.data.value.sessions;
+                            $scope.available_sessions_tutor = response.data.value.sessions;
                         }
                     } else {
                         alert('Something went wrong. Please try again');
@@ -186,7 +186,7 @@
                 });
         };
 
-        $scope.signUpForSession = function(sessionId) {
+        $scope.studentAddSession = function(sessionId) {
             console.log('Siging up..');
         };
 
@@ -241,6 +241,7 @@
     			if (confirm("Are you sure you want to delete session number " + session_id + ' on ' + slot + "?")) {
     				$http.post('deleteSessionTutor.php', {"session_id": session_id})
     					.then(function(response) {
+                console.log(response.data);
     						if (response.status === 200) {
     							if (response.data.status === 'error') {
     								alert('Error: ' + response.data.message);

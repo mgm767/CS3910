@@ -17,8 +17,6 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 //get each piece of data
 $slot = $data['slot'];
-$course_id = $data['course_id'];
-
 
 //set up variables to handle errors
 // is complete will be false if we find any problems when checking on the data

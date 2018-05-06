@@ -9,44 +9,52 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 $session_id = $data['session_id'];
 
+session_start();
+$hawkId = $_SESSION['hawkId'];
+
 $isComplete = true;
 $errorMessage = '';
 $response = array();
 $status = '';
 
+if (!isset($session_id)) {
+	$isComplete = false;
+	$errorMessage .= "No session_id received. ";
+}
 
 if($isComplete) {
-	$query_scheduled = "SELECT session_id FROM scheduled_sessions WHERE session_id='$session_id';";
-    $query_available = "SELECT id FROM available_sessions WHERE id='$session_id';";
-	$result1 = queryDB($query_scheduled, $db);
-	$result2 = queryDB($query_available, $db);
-	if(nTuples(result1) === 0) {
-		$status = 'error';
-		$errorMessage .= "Session_id $session_id does not match any record in the 'scheduled_sessions' table";
-	}
-	if(nTuples(result2) === 0) {
-		$status = 'error';
-		$errorMessage .= "Session_id $session_id does not match any record in the 'available_sessions' table";
-	}
+		$query = "SELECT tutor_id FROM sessions WHERE id='$session_id' AND available=TRUE;";
+
+		$result = queryDB($query, $db);
+		$row = nextTuple($result);
+		if(nTuples($result) === 0) {
+			$isComplete = false;
+			$status = 'error';
+			$errorMessage .= "Session with id $session_id either does not exist or has been scheduled. ";
+		} elseif ($row['tutor_id'] != $hawkId) {
+			$isComplete = false;
+			$status = 'error';
+			$errorMessage .= "Only the tutor that scheduled the session may delete the session. ";
+		}
 }
 
 if ($isComplete) {
-	$query1 = "DELETE FROM scheduled_sessions WHERE session_id='$session_id';";
-	queryDB($query1, $db);
-	$query2 = "DELETE FROM available_sessions WHERE id='$session_id';";
-	queryDB($query2, $db);	
-	$status = 'success';
-	$response['status'] = $status;
+		$query = "DELETE FROM sessions WHERE id='$session_id';";
+		queryDB($query, $db);
+		$status = 'success';
+		$response['status'] = $status;
 } else {
 	// Something's wrong - send back an error
 	ob_start();
 	var_dump($data);
 	$postDump = ob_get_clean();
-	
+
 	$response = array();
 	$status = 'error';
 	$response['message'] = $errorMessage;
 	$response['status'] = $status;
+	$response['tutor_id'] = $row['tutor_id'];
+	$response['hawk_id'] = $hawkId;
 	// Split this off so it doesn't show up for the user
 	$response['postDump'] = $postDump;
 }
