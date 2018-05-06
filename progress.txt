@@ -14,6 +14,7 @@ RUBRIC CHECKLIST: (Y/N)
     - students scheduling appointments affects budget -- Y
     - tutors set available times -- Y
     -- tutors see upcoming appointments -- Y
+    -- tutors see scheduled appointments -- N
     -- tutors can cancel appointments -- N
     -- tutors can delete unscheduled appointments -- Y
 
