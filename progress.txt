@@ -5,17 +5,17 @@ RUBRIC CHECKLIST: (Y/N)
 2. Authentication/Permissions (10 pts):
     - login -- Y
     - logout -- Y
-    - Passwords/Password encryption -- N
-    
+    - Passwords/Password encryption -- Y
+
 3. Scheduling of Tutoring Appointments (20 pts):
     - students see upcoming appointments -- Y
     - students can schedule appointments -- N
     - students can cancel appointments -- N
     - students scheduling appointments affects budget -- N
-    - tutors set available times -- N
+    - tutors set available times -- Y
     -- tutors see upcoming appointments -- Y
     -- tutors can cancel appointments -- N
-    
+
 4. Faculty and Administrator (10 pts):
     -faculty can assign problem sets to courses -- N
     -admin can edit/remove accounts -- Y
@@ -28,8 +28,7 @@ RUBRIC CHECKLIST: (Y/N)
     - advanced tutor availability -- N
     - advanced account setup -- WORKIN' ON IT
     - monitoring of students/tutor -- N
-    
+
 6. HCI (20 pts) -- Y
 
 7. Code (20 pts) -- Y
-    
