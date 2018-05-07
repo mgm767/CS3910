@@ -24,7 +24,7 @@ RUBRIC CHECKLIST: (Y/N)
     -faculty can assign problem sets to courses -- Y
     -faculty can add students -- Y
     -admin can edit/remove accounts -- Y
-    -admin can add accounts -- N
+    -admin can add accounts -- Y
 
 5. Incorporation of Advanced Features (10 pts) -- N
     ideas...
