@@ -9,12 +9,12 @@
     $lastName = $data['lastName'];
 	$password = $data['password'];
     $courseId = $data['courseId'];
+    $hashedpass = crypt($password, getsalt());
 
    // connect to the database
     $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 
     // check for required fields
-    $isComplete = true;
     $errorMessage = "";
 
     // check if hawkId meets criteria
@@ -44,17 +44,16 @@
         $isComplete = false;
         $errorMessage .= "Please enter a password with at least six characters. ";
     }
+    
+$queryUsert = "INSERT INTO users(hawk_id, first_name, last_name, hashedpass, student, tutor, administrator, professor) VALUES ($hawkId, $firstName, $lastName, $hashedpass, TRUE, FALSE, FALSE, FALSE);"
+$queryStudentt = "INSERT INTO students(hawk_id, course_id) VALUES ($hawkId, $courseId);"
 
-// one of the things we want to send back is the data that his php file received
-ob_start();
-// uncomment when testing
-//var_dump($data);
-$postdump = ob_get_clean();
+queryDB($queryUsert, $db);
+queryDB($queryStudentt, $db);
+	
+$status = 'success';
+$response['status'] = $status;
 
-// set up our response array
-$response = array();
-$response['status'] = 'error';
-$response['message'] = $errorMessage . $postdump;
 header('Content-Type: application/json');
 echo(json_encode($response));
 

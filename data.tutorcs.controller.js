@@ -319,7 +319,22 @@
                     }
                 });
         };
-
+        
+        //add new student account
+        $scope.newStudentAccount = function(){
+            $http.get('newStudentAccount.php')
+            .then(function(response) {
+                if (response.status == 200) {
+                    if (response.data.status == 'error') {
+                        alert('error: ' + response.data.message);
+                    } else {
+                        $window.location.reload();
+                    }
+                } else {
+                        alert('unexpected error');
+                    }
+                });  
+                };
 
         $scope.facultyCourses = [];
         $scope.getFacultyCourses = function () {
