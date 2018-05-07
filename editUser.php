@@ -15,26 +15,26 @@ $status = '';
 
 $first_name = $data['first_name'];
 $last_name = $data['last_name'];
-// $student = $data['student'];
-// $professor = $data['professor'];
-// $tutor = $data['tutor'];
-// $administrator = $data['administrator'];
+$student = $data['student'];
+$professor = $data['professor'];
+$tutor = $data['tutor'];
+$administrator = $data['administrator'];
 $hawk_id = $data['hawk_id'];
-$original_hawk_id = $data['original_hawk_id'];
 
 
 //
 // Validation
 //
 
-if (!isset($original_hawk_id)) {
+if (!isset($hawk_id)) {
 	$isComplete = false;
 	$status = 'error';
-	$errorMessage .= "Must include ID of user to be deleted: $original_hawk_id";
+	$errorMessage .= "Must include ID of user to be deleted: $hawk_id";
 }
 
 if (!isset($first_name)) {
 	$isComplete = false;
+	$status = 'error';
 	$errorMessage .= 'First name must be at least 1 character long.';
 } else {
 	$first_name = makeStringSafe($db, $first_name);
@@ -42,43 +42,64 @@ if (!isset($first_name)) {
 
 if (!isset($last_name)) {
 	$isComplete = false;
+	$status = 'error';
 	$errorMessage .= 'Last name must be at least 1 character long.';
 } else {
 	$last_name = makeStringSafe($db, $last_name);
 }
 
-// if (!isset($student)) {
-// 	$isComplete = false;
-// 	$errorMessage .= 'Student must be yes or no';
-// } else {
-// 	$student = makeStringSafe($db, $student);
-// }
+if (!isset($student)) {
+	$isComplete = false;
+	$status = 'error';
+	$errorMessage .= 'Student must be yes or no';
+} else {
+	$student = makeStringSafe($db, $student);
+}
+
+if (!isset($tutor)) {
+	$isComplete = false;
+	$status = 'error';
+	$errorMessage .= 'Student must be yes or no';
+} else {
+	$tutor = makeStringSafe($db, $tutor);
+}
+
+if (!isset($professor)) {
+	$isComplete = false;
+	$status = 'error';
+	$errorMessage .= 'Student must be yes or no';
+} else {
+	$professor = makeStringSafe($db, $professor);
+}
+
+if (!isset($administrator)) {
+	$isComplete = false;
+	$status = 'error';
+	$errorMessage .= 'Student must be yes or no';
+} else {
+	$administrator = makeStringSafe($db, $administrator);
+}
 
 if($isComplete) {
-	$query = "SELECT first_name, last_name FROM $tableName WHERE hawk_id='$original_hawk_id';";
+	$query = "SELECT first_name, last_name FROM $tableName WHERE hawk_id='$hawk_id';";
 	$result = queryDB($query, $db);
-	
+
 	if(nTuples(result) === 0) {
+		$isComplete = false;
 		$status = 'error';
-		$errorMessage .= "Hawk_id $original_hawk_id does not match any record in the 'users' table";
+		$errorMessage .= "Hawk_id $hawk_id does not match any record in the 'users' table";
 	}
 }
 
-// Check if this user already exists but with a different hawk_id
-// if ($isComplete) {
-// 	$query = "SELECT first_name, last_name FROM users WHERE first_name='$first_name' AND last_name='$last_name' AND student='$student' AND hawk_id<>$hawk_id;";
-// 	$result = queryDB($query, $db);
-	
-// 	if (nTuples($result)) {
-// 		$isComplete = false;
-// 		$errorMessage .= "User called $first_name $last_name already exists.";
-// 	}
-// }
-
 if ($isComplete) {
-	$query = "UPDATE $tableName SET first_name='$first_name', last_name='$last_name'  WHERE hawk_id='$original_hawk_id';";  // student='$student', tutor='$tutor'";
+	$query = "UPDATE $tableName
+			SET first_name='$first_name', last_name='$last_name', student='$student',
+			tutor='$tutor', professor='$professor', administrator='$administrator'
+			WHERE hawk_id='$hawk_id';";
+
+
 	queryDB($query, $db);
-	
+
 	$status = 'success';
 	$response['status'] = $status;
 } else {
@@ -86,7 +107,7 @@ if ($isComplete) {
 	ob_start();
 	var_dump($data);
 	$postDump = ob_get_clean();
-	
+
 	$response = array();
 	$status = 'error';
 	$response['message'] = $errorMessage;
