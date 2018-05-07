@@ -47,11 +47,15 @@ if($isComplete) {
 
 // Delete the scheduled_session row and update the session row
 if ($isComplete) {
+    $session_id = $row['session_id'];
+
     $queryDeleteScheduled = "DELETE FROM scheduled_sessions WHERE id='$scheduled_id';";
-		$queryUpdateSession = "UPDATE sessions SET available=TRUE WHERE id='$session_id';";
+		$queryUpdateSession = "UPDATE sessions SET available=1 WHERE id='$session_id';";
+    $queryToUpdateCredits = "UPDATE students SET session_credits=session_credits+1 WHERE hawk_id='$hawkId';";
 
     queryDB($queryDeleteScheduled, $db);
 		queryDB($queryUpdateSession, $db);
+    queryDB($queryToUpdateCredits, $db);
 
 		$status = 'success';
 		$response['status'] = $status;
