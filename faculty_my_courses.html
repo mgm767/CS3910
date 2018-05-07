@@ -97,10 +97,14 @@
       </div>
       <div class="modal-body">
         <div class="card mt-2 mb-4 border-info" ng-repeat="doc in documents | filter:query">
+          <span ng-init="doc.show = false"></span>
           <div class="card-body">
-            <h5 class="card-title">{{ doc.doc_name }}</h5>
-            <hr>
-            <h6 class="card-subtitle mb-2">{{ doc.doc_data }}</h6>
+            <h5 class="card-title">
+              {{ doc.doc_name }}
+              <span class="btn dropdown-toggle float-right" style="display:inline-block;" ng-click="doc.show = !doc.show"></span>
+            </h5>
+            <hr ng-if="doc.show">
+            <h6 class="card-subtitle mb-2" ng-if="doc.show">{{ doc.doc_data }}</h6>
           </div>
         </div>
       </div>
