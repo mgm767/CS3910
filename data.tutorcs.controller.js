@@ -338,9 +338,9 @@
         };
         
         //add new course document
-        $scope.addDocument = function(document){
-            console.log(document);
-            $http.post('newCourseDoc.php', document)
+        $scope.addDocument = function(doc){
+            console.log(doc);
+            $http.post('newCourseDoc.php', doc)
             .then(function(response) {
                 if (response.status == 200) {
                     if (response.data.status == 'error') {

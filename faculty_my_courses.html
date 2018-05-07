@@ -70,6 +70,7 @@
             <!-- Viewing course -->
             <tr class="text-center">
               <td scope="col">{{course.course_id}}</td>
+                
               <td scope="col">{{course.name}}</td>
               <td scope="col">
                 <button type="button" class="btn btn-info" style="width: 45%;" data-toggle="modal" data-target="#view">View</button>
@@ -90,8 +91,14 @@
         <h4 class="modal-title text-center">Course Documents</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-      <div class="modal-body" ng-init="getDocuments()">
-        <div ng-repeat="document in documents | filter:query">{{document.doc_name}}</div>        
+      <div class="modal-body">
+        <table class="table table-bordered table-hover table-sm" ng-init="getDocuments()">
+          <tbody ng-repeat="doc in documents | filter:query">
+            <tr class="text-center">
+              <td scope="col">{{doc.doc_name}}</td>
+            </tr>
+          </tbody>
+        </table>     
       </div>
     </div>
   </div>

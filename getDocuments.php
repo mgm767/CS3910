@@ -7,8 +7,7 @@ $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 
 $course_id = $data['course_id']
 
-$tablename = "course_docs";
-$query = "SELECT * FROM $tablename WHERE course_id=$course_id;";
+$query = "SELECT * FROM course_docs WHERE course_id='$course_id';";
 
 $result = queryDB($query, $db);
 
