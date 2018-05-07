@@ -54,8 +54,8 @@
     </nav>
     <div class="container-fluid">
       <div class="col-lg mt-5">
-        <button class="btn btn-success" style="width: 15%;" >Add Single Account</button>
-        <button class="btn btn-success" style="width: 15%;">Add Bulk Account CSV</button>
+        <button type="button" class="btn btn-success" style="width: 15%;" data-toggle="modal" data-target="#single">Add Single Account</button>
+        <button type="button" class="btn btn-success" style="width: 15%;" data-toggle="modal" data-target="#csv">Add Bulk Account CSV</button>
         <br>
         <br>
         <h2 class="text-center">My Student Accounts</h2>
@@ -137,5 +137,69 @@
         </table>
       </div>
     </div>
-</body>               
+</body>
+<!-- Modal for single user-->
+<div class="modal fade" id="single" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add a Single Student User</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form class="col-md-5" name="newStudentAccountForm" novalidate>
+          <div class="form-group" ng-class="{ 'text-danger': newStudentAccountForm.hawk_id.$invalid && newStudentAccountForm.hawk_id.$touched, 'text-success': !newStudentAccountForm.hawk_id.$invalid && newStudentAccountForm.hawk_id.$touched }">
+            <label class="form-control-label" for="hawk_id"><b>HawkID: </b></label>
+              <input type="text" class="form-control" style="width: 400px;" ng-class="{ 'is-invalid': newStudentAccountForm.hawk_id.$invalid && newStudentAccountForm.hawk_id.$touched, 'is-valid': !newStudentAccountForm.hawk_id.$invalid && newStudentAccountForm.hawk_id.$touched }" name="hawk_id" ng-model="account.hawk_id" ng-minlength="4" id="hawk_id" required/>
+              <div ng-show="newStudentAccountForm.hawk_id.$invalid && newStudentAccountForm.hawk_id.$touched" ></div>
+          </div>
+          <div class="form-group" ng-class="{ 'text-danger': newStudentAccountForm.first_name.$invalid && newStudentAccountForm.first_name.$touched, 'text-success': !newStudentAccountForm.first_name.$invalid && newStudentAccountForm.first_name.$touched }">
+              <label class="form-control-label" for="first_name"><b>First Name: </b></label>
+              <input type="text" class="form-control" style="width: 400px;" ng-class="{ 'is-invalid': newStudentAccountForm.first_name.$invalid && newStudentAccountForm.first_name.$touched, 'is-valid': !newStudentAccountForm.first_name.$invalid && newStudentAccountForm.first_name.$touched }" name="first_name" ng-model="account.first_name" ng-minlength="2" id="first_name" required/>
+              <div ng-show="newStudentAccountForm.first_name.$invalid && newStudentAccountForm.first_name.$touched" ></div>
+          </div>
+          <div class="form-group" ng-class="{ 'text-danger': newStudentAccountForm.last_name.$invalid && newStudentAccountForm.last_name.$touched, 'text-success': !newStudentAccountForm.last_name.$invalid && newStudentAccountForm.last_name.$touched }">
+              <label class="form-control-label" for="last_name"><b>Last Name: </b></label>
+              <input type="text" class="form-control"  style="width: 400px;"ng-class="{ 'is-invalid': newStudentAccountForm.last_name.$invalid && newStudentAccountForm.last_name.$touched, 'is-valid': !newStudentAccountForm.last_name.$invalid && newStudentAccountForm.last_name.$touched }" name="last_name" ng-model="account.last_name" ng-minlength="2" id="last_name" required/>
+              <div ng-show="newStudentAccountForm.last_name.$invalid && newStudentAccountForm.last_name.$touched" ></div>
+          </div>
+              <div class="form-group" ng-class="{ 'text-danger': newStudentAccountForm.password.$invalid && newStudentAccountForm.password.$touched, 'text-success': !newStudentAccountForm.password.$invalid && newStudentAccountForm.password.$touched }">
+              <label class="form-control-label" for="password"><b>Password: </b></label>
+              <input type="text" class="form-control" style="width: 400px;" ng-class="{ 'is-invalid': newStudentAccountForm.password.$invalid && newStudentAccountForm.password.$touched, 'is-valid': !newStudentAccountForm.password.$invalid && newStudentAccountForm.password.$touched }" name="password" ng-model="account.password" ng-minlength="2" id="password" required/>
+              <div ng-show="newStudentAccountForm.password.$invalid && newStudentAccountForm.password.$touched" ></div>
+          </div>
+              <div class="form-group" ng-class="{ 'text-danger': newStudentAccountForm.course_id.$invalid && newStudentAccountForm.course_id.$touched, 'text-success': !newStudentAccountForm.course_id.$invalid && newStudentAccountForm.course_id.$touched }">
+              <label class="form-control-label" for="course_id"><b>Course ID: </b></label>
+              <input type="text" class="form-control" style="width: 400px;" ng-class="{ 'is-invalid': newStudentAccountForm.course_id.$invalid && newStudentAccountForm.course_id.$touched, 'is-valid': !newStudentAccountForm.course_id.$invalid && newStudentAccountForm.course_id.$touched }" name="course_id" ng-model="account.course_id" ng-minlength="6" id="course_id" required/>
+              <div ng-show="newStudentAccountForm.course_id.$invalid && newStudentAccountForm.course_id.$touched"></div>
+          </div>
+          <div>
+              <button class="btn btn-success mt-2" ng-click="newStudentAccount">Add Account</button>
+         </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for bulk csv-->
+<div class="modal fade" id="csv" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center">Add a CSV of Student Users</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer text-senter">
+        <button type="button" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 </html>
