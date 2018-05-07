@@ -334,6 +334,12 @@
                 }
             });
         };
+                //add new student account
+        $scope.newCSVStudentAccount = function(){
+            console.log(newAccount);
+            $http.post('newCSVstudentAccount.php');
+            $window.location.reload();
+        };
 
         //add new course document
         $scope.addDocument = function(doc){
