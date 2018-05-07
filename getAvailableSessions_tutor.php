@@ -11,7 +11,7 @@ $hawkId = $_SESSION['hawkId'];
 $tablename = 'sessions';
 
 //query to obtain just the sessions in the future and with readable dates
-$query = "SELECT id, course_id, DATE_FORMAT(slot, '%M %D, %Y %H:%i %p') as slot_date
+$query = "SELECT id, course_id, DATE_FORMAT(slot, '%M %D, %Y %I:%i %p') as slot_date
           FROM $tablename
           WHERE tutor_id='$hawkId'
           AND available=TRUE
