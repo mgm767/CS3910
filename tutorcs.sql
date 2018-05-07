@@ -170,15 +170,15 @@ INSERT INTO course_docs(course_id, doc_name)
 
 --Test data for available sessions table --
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-05-04 10:00:00", "CS:1110","tutor", FALSE);
+	VALUES ("2018-05-04 10:00:00", "CS:1210","tutor", FALSE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-05-05 10:00:00", "CS:1110","tutor", FALSE);
+	VALUES ("2018-05-05 10:00:00", "CS:1210","tutor", FALSE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-05-06 10:00:00", "CS:1110","tutor", FALSE);
+	VALUES ("2018-05-06 10:00:00", "CS:1210","tutor", FALSE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-05-07 10:00:00", "CS:1110","tutor", FALSE);
+	VALUES ("2018-05-07 10:00:00", "CS:1210","tutor", FALSE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-05-08 10:00:00", "CS:1110","tutor", FALSE);
+	VALUES ("2018-05-08 10:00:00", "CS:1210","tutor", FALSE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
 	VALUES ("2018-05-05 10:00:00", "CS:1210","tutor2", FALSE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)

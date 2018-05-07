@@ -22,7 +22,7 @@
     <script src="data.tutorcs.controller.js"></script>
     <script src="cs.filter.js"></script>
 </head>
-<body ng-controller="dataControl" ng-init="getScheduledSessions()">
+<body ng-controller="dataControl" ng-init="getScheduledSessions_student()">
     <!-- This is the menu bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <!-- this is a place to put the title of the page, or a logo -->
@@ -61,6 +61,8 @@
     <div class="container-fluid">
       <div class="col-lg mt-5">
         <h2 class="text-center">Scheduled Sessions</h2>
+        <br>
+        <h4 class="text-danger" ng-if="scheduled_sessions_student.length < 1">No upcoming scheduled sessions.</h4>
         <table class="table table-bordered table-hover table-sm">
           <thead>
             <tr class="bg-warning text-center">
@@ -71,7 +73,7 @@
               <th scope="col"></th>
             </tr>
           </thead>
-          <tbody ng-repeat="scheduled_session in sessions | filter:query">
+          <tbody ng-repeat="scheduled_session in scheduled_sessions_student | filter:query">
             <!-- Viewing course -->
             <tr class="text-center">
               <td scope="col">{{scheduled_session.course_id}}</td>

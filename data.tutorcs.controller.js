@@ -97,30 +97,10 @@
                 });
         };
 
-
-         $scope.sessions = [];
-        $scope.getSessions = function () {
-            $http.get('tutor_scheduled.php')
-                .then(function (response) {
-                    if (response.status == 200) {
-                        if (response.data.status == 'error') {
-                            alert('error: ' + response.data.message);
-                        } else {
-                            console.log(response.data.value.sessions);
-                            $scope.sessions = response.data.value.sessions;
-                        }
-                    } else {
-                        alert('unexpected error');
-                    }
-                });
-        };
-
-
         $scope.available_sessions_student = [];
         $scope.getAvailableSessions_student = function () {
             $http.get('getAvailableSessions_student.php')
                 .then(function (response) {
-                  console.log(response.data.value.credits);
                     if (response.status == 200) {
                         if (response.data.status == 'error') {
                             alert('error: ' + response.data.message);
@@ -134,15 +114,15 @@
                 });
         };
 
-        $scope.scheduled_sessions = [];
-        $scope.getScheduledSessions = function () {
-            $http.get('getScheduledSessions.php')
+        $scope.scheduled_sessions_student = [];
+        $scope.getScheduledSessions_student = function () {
+            $http.get('getScheduledSessions_student.php')
                 .then(function (response) {
                     if (response.status == 200) {
                         if (response.data.status == 'error') {
                             alert('error: ' + response.data.message);
                         } else {
-                            $scope.sessions = response.data.value.sessions;
+                            $scope.scheduled_sessions_student = response.data.value.sessions;
                             $scope.credits = response.data.value.credits;
                         }
                     } else {
@@ -178,11 +158,26 @@
                         if (response.data.status === 'error') {
                             alert('Error: ' + response.data.message);
                         } else {
-                            console.log(response.data.value.sessions);
                             $scope.available_sessions_tutor = response.data.value.sessions;
                         }
                     } else {
                         alert('Something went wrong. Please try again');
+                    }
+                });
+        };
+
+        $scope.scheduled_sessions_tutor = [];
+        $scope.getScheduledSessions_tutor = function () {
+            $http.get('getScheduledSessions_tutor.php')
+                .then(function (response) {
+                    if (response.status == 200) {
+                        if (response.data.status == 'error') {
+                            alert('error: ' + response.data.message);
+                        } else {
+                            $scope.scheduled_sessions_tutor = response.data.value.sessions;
+                        }
+                    } else {
+                        alert('unexpected error');
                     }
                 });
         };
@@ -273,7 +268,6 @@
                     if (response.data.status == 'error') {
                         alert('error: ' + response.data.message.users);
                     } else {
-                        console.log(response.data.value.users);
                         $scope.users = response.data.value.users;
                     }
                 } else {
@@ -291,7 +285,6 @@
                     if (response.data.status == 'error') {
                         alert('error: ' + response.data.message);
                     } else {
-                        console.log(response.data.value.courses);
                         $scope.courses = response.data.value.courses;
                     }
                 } else {
@@ -307,7 +300,6 @@
                     if (response.data.status == 'error') {
                         alert('error: ' + response.data.message);
                     } else {
-                        console.log(response.data.value.courses);
                         $scope.courses = response.data.value.courses;
                     }
                 } else {
@@ -324,7 +316,6 @@
                         if (response.data.status == 'error') {
                             alert('error: ' + response.data.message.users);
                         } else {
-                            console.log(response.data.value.users);
                             $scope.users = response.data.value.users;
                         }
                     } else {

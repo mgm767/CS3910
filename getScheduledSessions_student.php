@@ -6,21 +6,18 @@ include_once('dbutils.php');
 
 $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 
-session_start();
+session_start(); // getting hawkID of current user
 $hawkId = $_SESSION['hawkId'];
 
-$tablename = 'sessions';
-
-//query to obtain just the sessions with readable dates, ordered by date asc
+//query to obtain just the scheduled sessions for this user
 $query = "SELECT sessions.id, users.first_name, users.last_name, sessions.course_id,
-          DATE_FORMAT(sessions.slot, '%M %D, %Y %H:%i %p') as slot_date
-          FROM $tablename
+          DATE_FORMAT(slot, '%M %D, %Y %H:%i %p') as slot_date
+          FROM scheduled_sessions
+          JOIN sessions on (scheduled_sessions.id=sessions.id)
           JOIN users ON users.hawk_id=sessions.tutor_id
-          JOIN students ON students.hawk_id='$hawkId'
-          WHERE sessions.course_id=students.course_id
+          WHERE (scheduled_sessions.student_id='$hawkId')
           AND sessions.slot >= CURDATE()
-          AND available=TRUE
-          ORDER BY slot ASC;";
+          ORDER BY sessions.slot ASC;";
 
 $queryCredits = "SELECT session_credits FROM students WHERE hawk_id='$hawkId';";
 
@@ -28,14 +25,13 @@ $queryCredits = "SELECT session_credits FROM students WHERE hawk_id='$hawkId';";
 $result = queryDB($query, $db);
 $resultCredits = queryDB($queryCredits, $db);
 
-
 $sessions = array();
 
 $i = 0;
 
 while ($currentSession = nextTuple($result)) {
-        $sessions[$i] = $currentSession;
-        $i++;
+    $sessions[$i] = $currentSession;
+    $i++;
 }
 
 $creditsRow = nextTuple($resultCredits);
