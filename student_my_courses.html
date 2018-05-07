@@ -78,12 +78,27 @@
               <td scope="col">{{course.course_id}}</td>
               <td scope="col">{{course.name}}</td>
               <td scope="col">
-                <button class="btn btn-info mr-2" style="width: 45%;" ng-click="">View</button>
+                <button type="button" class="btn btn-success" style="width: 15%;" data-toggle="modal" data-target="#view">View</button>
               </td> 
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-</body>               
+</body>
+<!-- Modal for viewing course documents-->
+<div class="modal fade" id="view" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center">Course Documents</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Some documents here!</p>
+      </div>
+    </div>
+  </div>
+</div>
 </html>
