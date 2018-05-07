@@ -367,6 +367,22 @@
                     }
                 });
         };
+        
+        $scope.getCourseDocuments = [];
+        $scope.getDocuments = function () {
+            $http.get('getDocuments.php')
+            .then(function(response) {
+                if (response.status == 200) {
+                    if (response.data.status == 'error') {
+                        alert('error: ' + response.data.message);
+                    } else {
+                        $scope.documents = response.data.value.documents;
+                    }
+                } else {
+                        alert('unexpected error');
+                    }
+                });
+        };
 
         $scope.studentUsers = [];
         $scope.getStudentAccounts = function () {

@@ -82,7 +82,7 @@
     </div>
 </body>
 <!-- Modal for viewing course documents-->
-<div class="modal fade" id="view" role="dialog">
+<div class="modal fade" id="view" role="dialog" ng-controller="dataControl">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -90,8 +90,8 @@
         <h4 class="modal-title text-center">Course Documents</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-      <div class="modal-body">
-        <p>Some documents here!</p>
+      <div class="modal-body" ng-init="getDocuments()">
+        <div ng-repeat="document in documents | filter:query">{{document.doc_name}}</div>        
       </div>
     </div>
   </div>
@@ -106,10 +106,21 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <p>Some form here!</p>
-      </div>
-      <div class="modal-footer text-senter">
-        <button type="button" class="btn btn-success">Add</button>
+        <form class="col-md-5" name="addDocumentForm" novalidate>
+          <div class="form-group" ng-class="{ 'text-danger': addDocumentForm.doc_name.$invalid && addDocumentForm.doc_name.$touched, 'text-success': !addDocumentForm.doc_name.$invalid && addDocumentForm.doc_name.$touched }">
+            <label class="form-control-label" for="doc_name"><b>Document Name: </b></label>
+              <input type="text" class="form-control" style="width: 400px;" ng-class="{ 'is-invalid': addDocumentForm.doc_name.$invalid && addDocumentForm.doc_name.$touched, 'is-valid': !addDocumentForm.doc_name.$invalid && addDocumentForm.doc_name.$touched }" name="doc_name" ng-model="document.doc_name" ng-minlength="4" id="doc_name" required/>
+              <div ng-show="addDocumentForm.doc_name.$invalid && addDocumentForm.doc_name.$touched" ></div>
+          </div>
+          <div class="form-group" ng-class="{ 'text-danger': addDocumentForm.doc_text.$invalid && addDocumentForm.doc_text.$touched, 'text-success': !addDocumentForm.doc_text.$invalid && addDocumentForm.doc_text.$touched }">
+            <label class="form-control-label" for="doc_data"><b>Document Text: </b></label>
+              <textarea class="form-control" style="width: 400px;" rows="10" cols="30" ng-class="{ 'is-invalid': addDocumentForm.doc_data.$invalid && addDocumentForm.doc_data.$touched, 'is-valid': !addDocumentForm.doc_data.$invalid && addDocumentForm.doc_data.$touched }" name="doc_data" ng-model="document.doc_data" ng-minlength="4" id="doc_data" required></textarea>
+              <div ng-show="addDocumentForm.doc_data.$invalid && addDocumentForm.doc_data.$touched" ></div>
+          </div>
+          <div>
+              <button class="btn btn-success mt-2" ng-click="addDocument(document)">Add Document</button>
+         </div>
+        </form>
       </div>
     </div>
   </div>
