@@ -37,6 +37,7 @@ if (!isset($doc_data) || (strlen($doc_data) < 1)) {
     $doc_data = makeStringSafe($db, $doc_data);
 }
 
+$course_id = makeStringSafe($db, $course_id);
 
 if ($isComplete) {
     $query = "INSERT INTO course_docs(course_id, doc_name, doc_data) VALUES ('$course_id', '$doc_name', '$doc_data');";
