@@ -112,7 +112,7 @@
               <input type="text" class="form-control" style="width: 400px;" ng-class="{ 'is-invalid': addDocumentForm.doc_name.$invalid && addDocumentForm.doc_name.$touched, 'is-valid': !addDocumentForm.doc_name.$invalid && addDocumentForm.doc_name.$touched }" name="doc_name" ng-model="document.doc_name" ng-minlength="4" id="doc_name" required/>
               <div ng-show="addDocumentForm.doc_name.$invalid && addDocumentForm.doc_name.$touched" ></div>
           </div>
-          <div class="form-group" ng-class="{ 'text-danger': addDocumentForm.doc_text.$invalid && addDocumentForm.doc_text.$touched, 'text-success': !addDocumentForm.doc_text.$invalid && addDocumentForm.doc_text.$touched }">
+          <div class="form-group" ng-class="{ 'text-danger': addDocumentForm.doc_data.$invalid && addDocumentForm.doc_data.$touched, 'text-success': !addDocumentForm.doc_data.$invalid && addDocumentForm.doc_data.$touched }">
             <label class="form-control-label" for="doc_data"><b>Document Text: </b></label>
               <textarea class="form-control" style="width: 400px;" rows="10" cols="30" ng-class="{ 'is-invalid': addDocumentForm.doc_data.$invalid && addDocumentForm.doc_data.$touched, 'is-valid': !addDocumentForm.doc_data.$invalid && addDocumentForm.doc_data.$touched }" name="doc_data" ng-model="document.doc_data" ng-minlength="4" id="doc_data" required></textarea>
               <div ng-show="addDocumentForm.doc_data.$invalid && addDocumentForm.doc_data.$touched" ></div>
