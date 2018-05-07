@@ -176,17 +176,17 @@ INSERT INTO sessions(slot, course_id, tutor_id, available)
 INSERT INTO sessions(slot, course_id, tutor_id, available)
 	VALUES ("2018-05-06 10:00:00", "CS:1210","tutor", FALSE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-05-07 10:00:00", "CS:1210","tutor", FALSE);
+	VALUES ("2018-05-07 10:00:00", "CS:1210","tutor", TRUE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-05-08 10:00:00", "CS:1210","tutor", FALSE);
+	VALUES ("2018-05-08 10:00:00", "CS:1210","tutor", TRUE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-05-05 10:00:00", "CS:1210","tutor2", FALSE);
+	VALUES ("2018-05-05 10:00:00", "CS:1110","tutor2", FALSE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-05-05 12:00:00", "CS:1210","tutor2", TRUE);
+	VALUES ("2018-05-05 12:00:00", "CS:1110","tutor2", FALSE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-06-05 10:00:00", "CS:1210","tutor2", TRUE);
+	VALUES ("2018-06-05 10:00:00", "CS:1110","tutor2", FALSE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-05-15 10:00:00", "CS:1210","tutor2", TRUE);
+	VALUES ("2018-05-15 10:00:00", "CS:1110","tutor2", TRUE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
 	VALUES ("2018-05-07 10:00:00", "CS:1110","tutor2", TRUE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
@@ -196,18 +196,18 @@ INSERT INTO sessions(slot, course_id, tutor_id, available)
 INSERT INTO sessions(slot, course_id, tutor_id, available)
 	VALUES ("2018-05-09 10:00:00", "CS:1110","tutor2", TRUE);
 INSERT INTO sessions(slot, course_id, tutor_id, available)
-	VALUES ("2018-05-09 08:00:00", "CS:1210","tutor2", TRUE);
+	VALUES ("2018-05-09 08:00:00", "CS:1110","tutor2", TRUE);
 
 -- Test data for scheduled sessions table --
 INSERT INTO scheduled_sessions(session_id, student_id, doc_id)
 	VALUES(1, "student", 1);
 INSERT INTO scheduled_sessions(session_id, student_id, doc_id)
-	VALUES(2, "student2", 1);
+	VALUES(2, "student", 1);
 INSERT INTO scheduled_sessions(session_id, student_id, doc_id)
-	VALUES(3, "student2", 2);
+	VALUES(3, "student", 2);
 INSERT INTO scheduled_sessions(session_id, student_id, doc_id)
-	VALUES(4, "student3", 2);
+	VALUES(7, "student2", 2);
 INSERT INTO scheduled_sessions(session_id, student_id, doc_id)
-	VALUES(5, "student4", 3);
+	VALUES(8, "student2", 3);
 INSERT INTO scheduled_sessions(session_id, student_id, doc_id)
-	VALUES(6, "student5", 3);
+	VALUES(9, "student2", 3);

@@ -10,10 +10,10 @@ session_start(); // getting hawkID of current user
 $hawkId = $_SESSION['hawkId'];
 
 //query to obtain just the scheduled sessions for this user
-$query = "SELECT sessions.id, users.first_name, users.last_name, sessions.course_id,
+$query = "SELECT scheduled_sessions.id, users.first_name, users.last_name, sessions.course_id,
           DATE_FORMAT(slot, '%M %D, %Y %H:%i %p') as slot_date
           FROM scheduled_sessions
-          JOIN sessions on (scheduled_sessions.id=sessions.id)
+          JOIN sessions on (scheduled_sessions.session_id=sessions.id)
           JOIN users ON users.hawk_id=sessions.tutor_id
           WHERE (scheduled_sessions.student_id='$hawkId')
           AND sessions.slot >= CURDATE()

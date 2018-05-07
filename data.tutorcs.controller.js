@@ -245,7 +245,10 @@
         };
 
         $scope.deleteSessionTutor = function(session_id, slot) {
-    			if (confirm("Are you sure you want to delete session number " + session_id + ' on ' + slot + "?")) {
+          var cancelTxt = "Are you sure you want to delete session number "
+            + session_id + ' on ' + slot + "?";
+
+          if (confirm(cancelTxt)) {
     				$http.post('deleteSessionTutor.php', {"session_id": session_id})
     					.then(function(response) {
     						if (response.status === 200) {
@@ -260,6 +263,47 @@
     					});
     			}
         };
+
+        $scope.cancelSession_tutor = function(scheduled_id, slot) {
+          var deleteTxt = "Are you sure you want to cancel session number " +
+            scheduled_id + " on " + slot + "? This will also delete the session.";
+
+          if (confirm(deleteTxt)) {
+            $http.post('cancelSession_tutor.php', {"scheduled_id": scheduled_id})
+              .then(function(response) {
+                if (response.status === 200) {
+                  if (response.data.status === 'error') {
+                    alert('Error: ' + response.data.message);
+                  } else {
+                    $window.location.reload();
+                  }
+                } else {
+                  alert('Something went wrong. Please try again');
+                }
+              });
+          }
+        };
+
+        $scope.cancelSession_student = function(scheduled_id, slot) {
+          var cancelTxt = "Are you sure you want to cancel session number "
+            + scheduled_id + ' on ' + slot + "?";
+
+          if (confirm(cancelTxt)) {
+            $http.post('cancelSession_student.php', {"scheduled_id": scheduled_id})
+              .then(function(response) {
+                if (response.status === 200) {
+                  if (response.data.status === 'error') {
+                    alert('Error: ' + response.data.message);
+                  } else {
+                    $window.location.reload();
+                  }
+                } else {
+                  alert('Something went wrong. Please try again');
+                }
+              });
+          }
+        };
+
         //create a new account
         $scope.newAccount = function () {
             $http.post('admin_add_account.php')

@@ -81,7 +81,10 @@
               <td scope="col">{{scheduled_session.first_name}} {{ scheduled_session.last_name}}</td>
               <td scope="col">{{scheduled_session.doc_id}}</td>
               <td scope="col">
-                <button class="btn btn-danger" style="width: 45%;" ng-click="">Cancel Session</button>
+                <button class="btn btn-danger" style="width: 45%;"
+                  ng-click="cancelSession_student(scheduled_session.id, scheduled_session.slot_date)">
+                  Cancel Session
+                </button>
               </td>
             </tr>
           </tbody>
