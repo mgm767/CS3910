@@ -24,7 +24,7 @@ CREATE TABLE courses (
 
 CREATE TABLE students (
 	hawk_id VARCHAR(50) NOT NULL,
-	FOREIGN KEY (hawk_id) REFERENCES users (hawk_id),
+	FOREIGN KEY (hawk_id) REFERENCES users (hawk_id) ON DELETE CASCADE,
 	-- Supporting international numbers up to 15 digits
 	phone_number VARCHAR(15),
 	course_id VARCHAR(15) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE students (
 -- Assuming a professor only teaches one course
 CREATE TABLE professors (
 	hawk_id VARCHAR(50) NOT NULL,
-	FOREIGN KEY (hawk_id) REFERENCES users (hawk_id),
+	FOREIGN KEY (hawk_id) REFERENCES users (hawk_id) ON DELETE CASCADE,
 	course_id VARCHAR(15) NOT NULL,
 	FOREIGN KEY (course_id) REFERENCES courses (course_id),
 	PRIMARY KEY (hawk_id)
@@ -44,7 +44,7 @@ CREATE TABLE professors (
 
 CREATE TABLE tutors (
 	hawk_id VARCHAR(50) NOT NULL,
-	FOREIGN KEY (hawk_id) REFERENCES users (hawk_id),
+	FOREIGN KEY (hawk_id) REFERENCES users (hawk_id) ON DELETE CASCADE,
 	-- Supporting international numbers up to 15 digits
 	phone_number VARCHAR(15),
 	course_id VARCHAR(15) NOT NULL,

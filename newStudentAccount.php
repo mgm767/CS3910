@@ -66,12 +66,26 @@ if (!isset($courseId) || (strlen($courseId) < 6)) {
 
 //Make sure this hawk_id is not already in the db
 if ($isComplete) {
-	$query = "SELECT first_name FROM users WHERE hawk_id='$hawk_id';";
+	$query = "SELECT first_name FROM users WHERE hawk_id='$hawkId';";
 	$result = queryDB($query, $db);
 
-	if(nTuples(result) > 0) {
-		responseError("A user with hawkId $hawkId already exists. Please choose a different one.");
+	if(nTuples($result) > 0) {
+    $isComplete = false;
+    $status = 'error';
+    $errorMessage .= "A user with hawkId $hawkId already exists. Please choose a different one. ";
 	}
+}
+
+// Make sure the course id exists
+if ($isComplete) {
+  $query = "SELECT name FROM courses WHERE course_id='$courseId';";
+  $result = queryDB($query, $db);
+
+  if(nTuples($result) == 0) {
+    $isComplete = false;
+    $status = 'error';
+    $errorMessage .= "Course id $courseId does not exist. Please choose a different one. ";
+  }
 }
 
 if ($isComplete) {
@@ -96,7 +110,8 @@ if ($isComplete) {
 
   	// Sned back error response
   	$response['status'] = 'error';
-  	$response['message'] = $errorMessage . "\nDetails: $postdump";
+  	$response['message'] = $errorMessage;
+    $resposne['postDump'] = "\nDetails: $postdump";
   	header('Content-Type: application/json');
   	echo(json_encode($response));
 }
