@@ -336,6 +336,23 @@
                 }
             });
         };
+        
+        //add new course document
+        $scope.addDocument = function(document){
+            console.log(document);
+            $http.post('newCourseDoc.php', document)
+            .then(function(response) {
+                if (response.status == 200) {
+                    if (response.data.status == 'error') {
+                        alert('error: ' + response.data.message);
+                    } else {
+                        $window.location.reload();
+                    }
+                } else {
+                    alert('unexpected error');
+                }
+            });
+        };
 
         $scope.facultyCourses = [];
         $scope.getFacultyCourses = function () {

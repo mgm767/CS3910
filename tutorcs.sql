@@ -56,6 +56,7 @@ CREATE TABLE course_docs (
 	id INT NOT NULL AUTO_INCREMENT,
 	course_id VARCHAR(15) NOT NULL,
 	doc_name VARCHAR(30) NOT NULL,
+	doc_data VARCHAR(500) NOT NULL,
 	FOREIGN KEY (course_id) REFERENCES courses (course_id),
 	PRIMARY KEY (id)
 );
@@ -159,14 +160,18 @@ INSERT INTO tutors(hawk_id, phone_number, course_id)
 	VALUES ("tutor4", "326-875-9476","UWSD:5500");
 
 --Test data for course docs table --
-INSERT INTO course_docs(course_id, doc_name)
-	VALUES ("CS:1210", "Test One Study Guide");
-INSERT INTO course_docs(course_id, doc_name)
-	VALUES ("CS:1110", "Practice Problems Week 2");
-INSERT INTO course_docs(course_id, doc_name)
-	VALUES ("CS:1020", "Practice Problems Week 5");
-INSERT INTO course_docs(course_id, doc_name)
-	VALUES ("UWSD:5500", "Coding Underwater for Dummies");
+INSERT INTO course_docs(course_id, doc_name, doc_data)
+	VALUES ("CS:1210", "Test One Study Guide", "Lorem ipsum dolor sit amet, eam aliquip fabulas ut, vis laoreet reprimique at. Modus errem est et, decore vocent cu per. Assum tempor has ut. No cum clita decore. Mea te accommodare ullamcorper, ei nam laoreet tacimates efficiantur.u explicari hendrerit pro, eam omnes minimum theophrastus ei, ex eos cetero.");
+INSERT INTO course_docs(course_id, doc_name, doc_data)
+	VALUES ("CS:1110", "Practice Problems Week 2", "Esse eleifend cum no. Essent epicurei an mei, te quo solum fugit augue, dolor integre an quo. Pro an vide oporteat, tempor officiis assueverit per in, legere tibique vim an. Nec putent recteque ad. Sit enim dolor graeco ne, duo ludus maiestatis ad, etiam postea expetenda mel id. Dicit aperiam.");
+INSERT INTO course_docs(course_id, doc_name, doc_data)
+	VALUES ("CS:1020", "Practice Problems Week 5", "Lorem ipsum dolor sit amet, vim laoreet incorrupte et, ne usu persecuti deseruisse. Per possit perpetua no. Ridens possit comprehensam no mea, no eam nonumy appetere probatus. His efficiendi omittantur an, ius no prima reque. Eligendi indoctum constituam eu has. Ei alia quaestio nec.
+
+His an vidit labore petentium graeco.");
+INSERT INTO course_docs(course_id, doc_name, doc_data)
+	VALUES ("UWSD:5500", "Coding Underwater for Dummies", "Lorem ipsum dolor sit amet, ea mel esse probo. Errem deserunt tacimates duo ex. Ferri dolorem nam ut, ex habeo inciderint voluptatibus qui. Vel amet saperet in, utinam melius facilisis mei ne.
+
+Mea solet luptatum persequeris te, te phaedrum oportere dissentiunt quo. An cum rationibus accommodare, ei modo mundi feugiat.");
 
 --Test data for available sessions table --
 INSERT INTO sessions(slot, course_id, tutor_id, available)
