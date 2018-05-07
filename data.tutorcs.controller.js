@@ -321,8 +321,8 @@
         };
         
         //add new student account
-        $scope.newStudentAccount = function(){
-            $http.get('newStudentAccount.php')
+        $scope.newStudentAccount = function(newAccount){
+            $http.post('newStudentAccount.php', newAccount)
             .then(function(response) {
                 if (response.status == 200) {
                     if (response.data.status == 'error') {
