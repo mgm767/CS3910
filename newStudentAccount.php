@@ -64,6 +64,16 @@ if (!isset($courseId) || (strlen($courseId) < 6)) {
     $courseId = makeStringSafe($db, $courseId);
 }
 
+//Make sure this hawk_id is not already in the db
+if ($isComplete) {
+	$query = "SELECT first_name FROM users WHERE hawk_id='$hawk_id';";
+	$result = queryDB($query, $db);
+
+	if(nTuples(result) > 0) {
+		responseError("A user with hawkId $hawkId already exists. Please choose a different one.");
+	}
+}
+
 if ($isComplete) {
     $queryUser = "INSERT INTO users(hawk_id, first_name, last_name, hashedpass, student, tutor, administrator, professor) VALUES ('$hawkId', '$firstName', '$lastName', '$hashedpass', TRUE, FALSE, FALSE, FALSE);";
     $queryStudent = "INSERT INTO students(hawk_id, course_id) VALUES ('$hawkId', '$courseId');";
