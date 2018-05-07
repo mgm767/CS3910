@@ -194,10 +194,15 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer text-senter">
-        <button type="button" class="btn btn-success">Submit</button>
+        <form method="post" enctype="multipart/form-data">
+          <div align="center">  
+            <label><b>Select CSV File:   </b></label>
+              <input type="file" name="file"/>
+              <br/>
+              <br/>
+              <input type="submit" name="submit" value="Add" class="btn-lg btn-success"/>
+          </div>
+       </form>
       </div>
     </div>
   </div>
