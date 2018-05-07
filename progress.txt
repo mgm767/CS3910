@@ -21,7 +21,8 @@ RUBRIC CHECKLIST: (Y/N)
     -- student/tutor are given some for of notification when session is canceled -- N
 
 4. Faculty and Administrator (10 pts):
-    -faculty can assign problem sets to courses -- N
+    -faculty can assign problem sets to courses -- Y
+    -faculty can add students -- Y
     -admin can edit/remove accounts -- Y
     -admin can add accounts -- N
 
