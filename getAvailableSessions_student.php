@@ -13,7 +13,7 @@ $tablename = 'sessions';
 
 // Query to obtain just the sessions with readable dates, ordered by date asc
 $query = "SELECT sessions.id, users.first_name, users.last_name, sessions.course_id,
-          DATE_FORMAT(sessions.slot, '%M %D, %Y %H:%i %p') as slot_date
+          DATE_FORMAT(sessions.slot, '%M %D, %Y %I:%i %p') as slot_date
           FROM $tablename
           JOIN users ON users.hawk_id=sessions.tutor_id
           WHERE sessions.course_id=
