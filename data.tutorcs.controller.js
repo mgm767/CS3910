@@ -298,7 +298,7 @@
                     $window.location.reload();
                   }
                 } else {
-                  alert('Something went wrong. Please try again');
+                    alert('Something went wrong. Please try again');
                 }
               });
           }
@@ -319,7 +319,7 @@
                     }
                 });
         };
-        
+
         //add new student account
         $scope.newStudentAccount = function(newAccount){
             console.log(newAccount);
@@ -332,10 +332,10 @@
                         $window.location.reload();
                     }
                 } else {
-                        alert('unexpected error');
-                    }
-                });  
-                };
+                    alert('unexpected error');
+                }
+            });
+        };
 
         $scope.facultyCourses = [];
         $scope.getFacultyCourses = function () {
