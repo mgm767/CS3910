@@ -93,9 +93,8 @@
             <!-- Editing user -->
             <form name="editUserForm">
               <tr class="text-center" ng-if="user.editMode">
-                <td scope="col">
-                  <input type="text" class="form-control" value="{{editUser.hawk_id}}" name="hawk_id" ng-model="editUser.hawk_id" ng-minlength="2" required>
-                </td>
+                <!-- hawk_ids are permanent and may not be editted -->
+                <td scope="col">{{user.hawk_id}}</td>
                 <td scope="col">
                   <input type="text" class="form-control" value="{{editUser.first_name}}" name="first_name" ng-model="editUser.first_name" ng-minlength="1" required>
                 </td>
@@ -103,27 +102,27 @@
                   <input type="text" class="form-control" value="{{editUser.last_name}}" name="last_name" ng-model="editUser.last_name" ng-minlength="1" required>
                 </td>
                 <td scope="col">
-                  <select class="form-control" name="administrator" ng-model="editUser.administrator">
-                    <option value="false" ng-selected="editUser.administrator === '0'">No</option>
-                    <option value="true" ng-selected="editUser.administrator === '1'">Yes</option>
+                  <select class="form-control" name="administrator" ng-model="editUser.administrator" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
                   </select>
                 </td>
                 <td scope="col">
-                  <select class="form-control" name="professor" ng-model="editUser.professor">
-                    <option value="false" ng-selected="editUser.professor === '0'">No</option>
-                    <option value="true" ng-selected="editUser.professor === '1'">Yes</option>
+                  <select class="form-control" name="professor" ng-model="editUser.professor" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
                   </select>
                 </td>
                 <td scope="col">
-                  <select class="form-control" name="tutor" ng-model="editUser.tutor">
-                    <option value="false" ng-selected="editUser.tutor === '0'">No</option>
-                    <option value="true" ng-selected="editUser.tutor === '1'">Yes</option>
+                  <select class="form-control" name="tutor" ng-model="editUser.tutor" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
                   </select>
                 </td>
                 <td scope="col">
-                  <select class="form-control" name="student" ng-model="editUser.student">
-                    <option value="false" ng-selected="editUser.student === '0'">No</option>
-                    <option value="true" ng-selected="editUser.student === '1'">Yes</option>
+                  <select class="form-control" name="student" ng-model="editUser.student" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
                   </select>
                 </td>
                 <td scope="col">
