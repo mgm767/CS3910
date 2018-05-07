@@ -39,7 +39,7 @@ if (!isset($doc_data) || (strlen($doc_data) < 1)) {
 
 
 if ($isComplete) {
-    $query = "INSERT INTO course_docs(course_id, doc_name, doc_data) VALUES ('$course_id, $doc_name, $doc_data);";
+    $query = "INSERT INTO course_docs(course_id, doc_name, doc_data) VALUES ('$course_id', '$doc_name', '$doc_data');";
     queryDB($query, $db);
 
     $status = 'success';

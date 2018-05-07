@@ -209,8 +209,6 @@
         };
 
         $scope.updateUser = function(editUser, originalUser) {
-          // In case the admin has chosed to change the hawk_id (our primary key), keep the old one so we know which row to change
-          editUser.original_hawk_id = originalUser.hawk_id;
     			$http.post('editUser.php', editUser)
     				.then(function(response) {
     					if (response.status === 200) {
@@ -305,19 +303,19 @@
         };
 
         //create a new account
-        $scope.newAccount = function () {
-            $http.post('admin_add_account.php')
-            .then(function(response) {
-                if (response.status == 200) {
-                    if (response.data.status == 'error') {
-                        alert('error: ' + response.data.message.users);
-                    } else {
-                        $scope.users = response.data.value.users;
-                    }
-                } else {
-                        alert('unexpected error');
-                    }
-                });
+        $scope.newAccount = function (account) {
+            $http.post('admin_add_account.php', account)
+              .then(function(response) {
+                  if (response.status == 200) {
+                      if (response.data.status == 'error') {
+                          alert('error: ' + response.data.message);
+                      } else {
+                          $window.location.reload();
+                      }
+                  } else {
+                      alert('unexpected error');
+                  }
+              });
         };
 
         //add new student account
@@ -336,11 +334,11 @@
                 }
             });
         };
-        
+
         //add new course document
-        $scope.addDocument = function(document){
-            console.log(document);
-            $http.post('newCourseDoc.php', document)
+        $scope.addDocument = function(doc){
+            doc.course_id = $scope.course_id_viewing;
+            $http.post('newCourseDoc.php', doc)
             .then(function(response) {
                 if (response.status == 200) {
                     if (response.data.status == 'error') {
@@ -353,6 +351,10 @@
                 }
             });
         };
+
+        $scope.viewingDoc = function(course_id) {
+          $scope.course_id_viewing = course_id;
+        }
 
         $scope.facultyCourses = [];
         $scope.getFacultyCourses = function () {
@@ -384,7 +386,7 @@
                     }
                 });
         };
-        
+
         $scope.getCourseDocuments = [];
         $scope.getDocuments = function () {
             $http.get('getDocuments.php')
