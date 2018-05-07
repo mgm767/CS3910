@@ -5,7 +5,9 @@ include_once('dbutils.php');
 
 $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
 
-$course_id = $data['course_id']
+// retrieve js data
+$data = json_decode(file_get_contents('php://input'), true);
+$course_id = $data['course_id'];
 
 $query = "SELECT * FROM course_docs WHERE course_id='$course_id';";
 

@@ -388,9 +388,11 @@
         };
 
         $scope.getCourseDocuments = [];
-        $scope.getDocuments = function () {
-            $http.get('getDocuments.php')
+        $scope.getDocuments = function (course_id) {
+            $scope.loading = true;
+            $http.post('getDocuments.php', {course_id: course_id})
             .then(function(response) {
+                $scope.loading = false;
                 if (response.status == 200) {
                     if (response.data.status == 'error') {
                         alert('error: ' + response.data.message);
