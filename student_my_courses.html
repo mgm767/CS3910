@@ -78,7 +78,7 @@
               <td scope="col">{{course.course_id}}</td>
               <td scope="col">{{course.name}}</td>
               <td scope="col">
-                <button type="button" class="btn btn-success" style="width: 15%;" data-toggle="modal" data-target="#view">View</button>
+                <button type="button" class="btn btn-info" style="width: 15%;" data-toggle="modal" ng-click="getDocuments(course.course_id)" data-target="#view">View</button>
               </td> 
             </tr>
           </tbody>
@@ -87,16 +87,35 @@
     </div>
 </body>
 <!-- Modal for viewing course documents-->
-<div class="modal fade" id="view" role="dialog">
+<div class="modal fade" id="view" role="dialog" ng-controller="dataControl">
+  <!-- Modal content-->
   <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
+    <!-- display loading if we are loading course docs -->
+    <div class="text-info" ng-if="loading">
+      Loading..
+    </div>
+    <!-- if we are done loading but don't have docs, show 'no docs' text -->
+    <div class="text-danger" ng-if="!loading && documents.length < 1">
+      No course docs to show
+    </div>
+    <!-- show course docs if we have them -->
+    <div class="modal-content" ng-if="!loading && documents.length > 0">
       <div class="modal-header">
         <h4 class="modal-title text-center">Course Documents</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-        <p>Some documents here!</p>
+        <div class="card mt-2 mb-4 border-info" ng-repeat="doc in documents | filter:query">
+          <span ng-init="doc.show = false"></span>
+          <div class="card-body">
+            <h5 class="card-title">
+              {{ doc.doc_name }}
+              <span class="btn dropdown-toggle float-right" style="display:inline-block;" ng-click="doc.show = !doc.show"></span>
+            </h5>
+            <hr ng-if="doc.show">
+            <h6 class="card-subtitle mb-2" ng-if="doc.show">{{ doc.doc_data }}</h6>
+          </div>
+        </div>
       </div>
     </div>
   </div>
